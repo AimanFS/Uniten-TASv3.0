@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Vehicle;
+use App\Department;
+use App\User;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
@@ -21,9 +23,14 @@ class VehicleController extends Controller
     public function index()
     {
         $staff = Auth::user()->id;
+        //$dpt = Auth::user()->department_id;
+        //$department = User::with('department')->where('id', '=', $staff)->get();
+        
+
         $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
 
-        return view ('vehicle')->with('vehicle', $vehicles);
+        //return $department;
+        return view ('vehicle')->with('vehicle', $vehicles);//->with('department', $department);
     }
 
     /**

@@ -25,6 +25,48 @@
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.js"></script>
 
+    <!-- Car Brand and Model dropdown js -->
+    <script type="text/javascript">
+        function populate(brd, mdl) {
+            var brd = document.getElementById(brd);
+            var mdl = document.getElementById(mdl);
+            mdl.innerHTML = "";
+            if (brd.value == "Honda") {
+                var optionArray = ["Select Model|Select Model", "Jazz|Jazz", "City|City", "Civic|Civic",
+                    "Civic Type R|Civic Type R", "Accord|Accord", "BR-V|BR-V", "HR-V|HR-V", "CR-V|CR-V",
+                    "Odyssey|Odyssey"
+                ];
+            } else if (brd.value == "Toyota") {
+                var optionArray = ["Select Model|Select Model", "Vios|Vios", "Corolla Altis|Corolla Altis",
+                    "Camry|Camry", "Avanza|Avanza", "Innova|Innova", "Alphard|Alphard", "Vellfire|Vellfire",
+                    "Rush|Rush", "CH-R|CH-R", "Harrier|Harrier", "Fortuner|Fortuner", "Hilux|Hilux", "Hiace|Hiace",
+                    "Yaris|Yaris", "GR Supra|GR Supra"
+                ];
+            } else if (brd.value == "Perodua") {
+                var optionArray = ["Select Model|Select Model", "Axia|Axia", "Aruz|Aruz", "Myvi|Myvi", "Bezza|Bezza",
+                    "Alza|Alza"
+                ];
+            } else if (brd.value == "Proton") {
+                var optionArray = ["Select Model|Select Model", "X70|X70", "Saga|Saga", "Persona|Persona", "Iriz|Iriz",
+                    "Exora|Exora", "Perdana|Perdana"
+                ];
+            } else if (brd.value == "BMW") {
+                var optionArray = ["Select Model|Select Model", "1 Series|1 Series", "M2 Coupe|M2 Coupe",
+                    "3 Series|3 Series", "4 Series Coupe|4 Series Coupe", "M4 Coupe|M4 Coupe", "5 Series|5 Series",
+                    "M5|M5", "6 Series GT|6 Series GT", "7 Series|7 Series", "8 Series|8 Series", "X1|X1", "X2|X2",
+                    "X3|X3", "X4|X4", "X5|X5", , "X6 M|X6 M", "X7|X7", "Z4|Z4", "i3s|i3s", "i8 Coupe|i8 Coupe"
+                ];
+            }
+            for (var option in optionArray) {
+                var pair = optionArray[option].split("|");
+                var newOption = document.createElement("option");
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                mdl.options.add(newOption);
+            }
+        }
+
+    </script>
 
     <style>
         .content {
@@ -95,7 +137,6 @@
             border: 1px solid rgba(0, 0, 0, 0.125);
             border-radius: 0.25rem;
         }
-        
 
     </style>
 </head>

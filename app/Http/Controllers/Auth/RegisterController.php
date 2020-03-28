@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\User;
+use App\Department;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -54,6 +55,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:25', 'unique:staffs'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:staffs'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'department_id' => ['required'],
         ]);
     }
 
@@ -63,6 +65,13 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
+
+    public function showRegistrationForm()
+    {
+        $department = Department::all();
+        
+        return view('auth.register',compact('department'));
+    }
     protected function create(array $data)
     {
         return User::create([
@@ -70,6 +79,7 @@ class RegisterController extends Controller
             'username' => $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'department_id' => $data['department_id'],
         ]);
     }
 }

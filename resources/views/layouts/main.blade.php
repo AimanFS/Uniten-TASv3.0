@@ -215,7 +215,7 @@
                         </tr>
                         <tr>
                             <th scope="row"><strong>Department</strong></th>
-                            <td>N/A</td>
+                            <td scope="row">{{ Auth::user()->department->name }}</td>
                         </tr>
                     </tbody>
                 </table>

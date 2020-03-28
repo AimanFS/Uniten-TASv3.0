@@ -1,6 +1,8 @@
 <?php
 
 use App\Vehicle;
+use App\User;
+use App\Department;
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
