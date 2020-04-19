@@ -209,12 +209,19 @@
                 @endif
                 @else
                 <li class="nav-item dropdown">
+
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="position: relative; padding-left:50px">
+                        <img src="/images/{{ Auth::user()->avatar }}"
+                            style="width:32px; height:32px; position:absolute;bottom:1px; left:10px; border-radius:50%">{{ Auth::user()->name }}
+                        <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/profile">
+                            Profile
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}

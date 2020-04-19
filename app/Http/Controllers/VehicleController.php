@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Image;
 use Auth;
 use App\Vehicle;
 use App\Department;
@@ -53,11 +54,12 @@ class VehicleController extends Controller
     public function store(Request $request)
     {
         //
+        $platenumber = str_replace(' ', '', $request->platenumber);
         $vehicles = Vehicle::insert([
             "brand" => $request->brand,
             "model" => $request->model,
             "color" => $request->color,
-            "platenumber" => $request->platenumber,
+            "platenumber" =>  strtoupper($platenumber),
             "staff_id" => Auth::user()->id,
         ]);
 
@@ -114,5 +116,21 @@ class VehicleController extends Controller
         $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
 
         return view ('home')->with('vehicle', $vehicles);
+    }
+
+    public function profile(){
+        return view('profile');
+    }
+
+    public function updateprofile(Request $request){
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300,300)->save(public_path('/images/' . $filename));
+            $user = Auth::user();
+            $user->avatar = $filename;
+            $user->save(); 
+        }
+        return view('profile');
     }
 }

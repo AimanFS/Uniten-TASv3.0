@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/home', 'VehicleController@home')->name('home');
 
+Route::get('/profile', 'VehicleController@profile');
+
+Route::post('/profile', 'VehicleController@updateprofile');
+
 Route::resource('Vehicle', 'VehicleController');
 
 Route::resource('Attendance', 'AttendanceController');

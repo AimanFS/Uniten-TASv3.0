@@ -12,7 +12,7 @@
         <a href="" class="white-text mx-3">Vehicle</a>
 
 
-        <button class="btn btn-rounded purple-gradient">Register Vehicle</button>
+        <a href="{{route('Vehicle.create')}}"><button class="btn btn-rounded purple-gradient">Register Vehicle</button></a>
 
 
     </div>

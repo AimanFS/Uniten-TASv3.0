@@ -49,7 +49,7 @@
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Vehicle Used
+                            <a href="">Plate Number
                             </a>
                         </th>
                     </tr>

@@ -167,12 +167,18 @@
                 @endif
                 @else
                 <li class="nav-item dropdown">
+
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        style="position: relative; padding-left:50px"><img src="/images/{{ Auth::user()->avatar }}"
+                            style="width:32px; height:32px; position:absolute; bottom:1px; left:10px; border-radius:50%">
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/profile">
+                            Profile
+                        </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -197,11 +203,12 @@
 
             <!-- Card image -->
             <div class="profileview view-cascade overlay">
-                <img class="img-fluid rounded-circle" src="/images/profilepic.jpg" alt="Card image cap">
+                <img class="img-fluid rounded-circle" src="/images/{{ Auth::user()->avatar }}">
             </div>
             <!-- Card content -->
             <div class="card-body card-body-cascade">
-                <table class="table text-nowrap table-borderless text-light border border-white" style="background-color: #3C3B54">
+                <table class="table text-nowrap table-borderless text-light border border-white"
+                    style="background-color: #3C3B54">
                     <tbody>
                         <tr>
                             <th scope="col"><strong>Name</strong></th>
@@ -214,7 +221,7 @@
                             <td>{{ Auth::user()->username }} </td>
                         </tr>
                         <tr>
-                            <th scope="row"><strong>Department</strong></th>
+                            <th scope="row"><strong>Department Unit</strong></th>
                             <td scope="row">{{ Auth::user()->department->name }}</td>
                         </tr>
                     </tbody>
