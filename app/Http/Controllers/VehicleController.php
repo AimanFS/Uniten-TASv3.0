@@ -53,12 +53,31 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //to retrieve ic file
+        if($request->hasFile('icnum')){
+            $icfile = $request->file('icnum')->getClientOriginalName();
+            $filename = pathinfo($icfile, PATHINFO_FILENAME);
+            $extension = $request->file('icnum')->getClientOriginalExtension();
+            $icupload = $filename.'.'.$extension;
+            $ic = $request->file('icnum')->storeAs('identifications', $icupload);
+        }
+
+        //to retrieve license file
+        if($request->hasFile('license')){
+            $licensefile = $request->file('license')->getClientOriginalName();
+            $filename = pathinfo($licensefile, PATHINFO_FILENAME);
+            $extension = $request->file('license')->getClientOriginalExtension();
+            $licenseupload = $filename.'.'.$extension;
+            $license = $request->file('license')->storeAs('licenses', $licenseupload);
+        }
+
         $platenumber = str_replace(' ', '', $request->platenumber);
         $vehicles = Vehicle::insert([
             "brand" => $request->brand,
             "model" => $request->model,
             "color" => $request->color,
+            "icnum" => $ic,
+            "license" => $license,
             "platenumber" =>  strtoupper($platenumber),
             "staff_id" => Auth::user()->id,
         ]);

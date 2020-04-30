@@ -25,7 +25,7 @@ class DptSeeder extends Seeder
         ]);
 
         DB::table('staffs')->insert([
-            ["name" => "Aiman Faruqy", "username" => "SW0103281", "email" => "aiman@test.com", "password" => Hash::make('123456'), "avatar" => "/images/profilepic.jpg", "department_id" => "1"],
+            ["name" => "Aiman Faruqy", "username" => "SW0103281", "email" => "aiman@test.com", "password" => Hash::make('123456'), "avatar" => "profilepic.jpg", "department_id" => "1"],
         ]);
     }
 }

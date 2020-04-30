@@ -24,7 +24,7 @@
     <script type="text/javascript" src="/js/bootstrap.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.js"></script>
-
+    <script src="https://kit.fontawesome.com/a0abfe3bf3.js" crossorigin="anonymous"></script>
 
     <style>
         .content {
@@ -168,6 +168,7 @@
                 @else
                 <li class="nav-item dropdown">
 
+                    <!-- Profile pic in navbar -->
                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         style="position: relative; padding-left:50px"><img src="/images/{{ Auth::user()->avatar }}"
