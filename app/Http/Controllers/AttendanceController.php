@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Staff;
+use App\Vehicle;
+use Auth;
 use App\Attendance;
 use Illuminate\Http\Request;
 
@@ -15,7 +18,11 @@ class AttendanceController extends Controller
     public function index()
     {
         //
-        return view('attendance');
+        $staff = Auth::user()->id;
+        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
+        $attendance = Attendance::with('vehicle')->get();
+        //return($attendance);
+        return view ('attendance')->with('vehicle', $vehicles)->with('attendance', $attendance);
     }
 
     /**

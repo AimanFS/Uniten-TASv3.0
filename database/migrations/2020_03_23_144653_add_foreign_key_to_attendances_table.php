@@ -14,8 +14,8 @@ class AddForeignKeyToAttendancesTable extends Migration
     public function up()
     {
         Schema::table('attendances', function (Blueprint $table) {
-            $table->bigInteger('staff_id')->unsigned()->index()->nullable();
-            $table->foreign('staff_id')->references('id')->on('staffs');
+            $table->bigInteger('vehicle_id')->unsigned()->index()->nullable();
+            $table->foreign('vehicle_id')->references('id')->on('vehicles');
         });
     }
 

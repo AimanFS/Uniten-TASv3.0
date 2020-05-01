@@ -29,10 +29,6 @@
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Date
-                            </a>
-                        </th>
-                        <th class="th-lg">
                             <a href="">Time In
                             </a>
                         </th>
@@ -58,22 +54,16 @@
 
                 <!--Table body-->
                 <tbody>
+                    @foreach($attendance as $attend)
                     <tr>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <td>{{ Auth::user()->username}}</td>
+                        <td>{{$attend->timein}}</td>
+                        <td>{{$attend->locationin}}</td>
+                        <td>{{$attend->timeout}}</td>
+                        <td>{{$attend->locationout}}</td>
+                        <td>{{$attend->vehicle->platenumber}}</td>
                     </tr>
-                    <tr>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                        <td>Jacob</td>
-                        <td>Thornton</td>
-                        <td>@fat</td>
-                    </tr>
+                    @endforeach
 
                 </tbody>
                 <!--Table body-->

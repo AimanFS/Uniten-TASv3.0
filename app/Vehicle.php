@@ -15,4 +15,8 @@ class Vehicle extends Model
     public function staff(){
         return $this->belongsTo('App\User');
     }
+
+    public function attendance(){
+        return $this->hasMany('App\Attendance');
+    }
 }

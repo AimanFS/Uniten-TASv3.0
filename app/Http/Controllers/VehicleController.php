@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Image;
 use Auth;
+use App\Attendance;
 use App\Vehicle;
 use App\Department;
 use App\User;
@@ -59,7 +60,9 @@ class VehicleController extends Controller
             $filename = pathinfo($icfile, PATHINFO_FILENAME);
             $extension = $request->file('icnum')->getClientOriginalExtension();
             $icupload = $filename.'.'.$extension;
-            $ic = $request->file('icnum')->storeAs('identifications', $icupload);
+            $path = 'identifications';
+            $ic = $request->file('icnum')->move($path, $icupload);
+            
         }
 
         //to retrieve license file
@@ -68,10 +71,12 @@ class VehicleController extends Controller
             $filename = pathinfo($licensefile, PATHINFO_FILENAME);
             $extension = $request->file('license')->getClientOriginalExtension();
             $licenseupload = $filename.'.'.$extension;
-            $license = $request->file('license')->storeAs('licenses', $licenseupload);
+            $path = 'licenses';
+            $license = $request->file('license')->move($path,  $licenseupload);
         }
 
         $platenumber = str_replace(' ', '', $request->platenumber);
+
         $vehicles = Vehicle::insert([
             "brand" => $request->brand,
             "model" => $request->model,
@@ -81,7 +86,6 @@ class VehicleController extends Controller
             "platenumber" =>  strtoupper($platenumber),
             "staff_id" => Auth::user()->id,
         ]);
-
         return redirect()->action('VehicleController@index');
     }
 
@@ -133,8 +137,9 @@ class VehicleController extends Controller
     public function home(Request $request){
         $staff = Auth::user()->id;
         $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
-
-        return view ('home')->with('vehicle', $vehicles);
+        $attendance = Attendance::with('vehicle')->get();
+        //return($attendance);
+        return view ('home')->with('vehicle', $vehicles)->with('attendance', $attendance);
     }
 
     public function profile(){
