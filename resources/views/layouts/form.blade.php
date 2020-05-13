@@ -7,6 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>UNITEN TAS v3.0</title>
     <!-- Font Awesome -->
+
+    <!-- Stylesheet -->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+        integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+
+
+
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
     <!-- Google Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
@@ -14,17 +24,8 @@
     <link href="/css/bootstrap.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="/css/mdb.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/colorPick.css">
 
-    <!-- JQuery -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
-    </script>
-    <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="/js/bootstrap.js"></script>
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="/js/mdb.js"></script>
-    
     <script src="https://kit.fontawesome.com/a0abfe3bf3.js" crossorigin="anonymous"></script>
     <!-- Car Brand and Model dropdown js -->
     <script type="text/javascript">
@@ -139,6 +140,54 @@
             border-radius: 0.25rem;
         }
 
+        .carWhite {
+            color: #ffffff;
+        }
+
+        .carYellow {
+            color: yellow;
+        }
+
+        .carBlue {
+            color: blue;
+        }
+
+        .carRed {
+            color: red;
+        }
+
+        .carGreen {
+            color: green;
+        }
+
+        .carBlack {
+            color: black;
+        }
+
+        .carBrown {
+            color: brown;
+        }
+
+        .carTeal {
+            color: teal;
+        }
+
+        .carPurple {
+            color: purple;
+        }
+
+        .carOrange {
+            color: orange;
+        }
+
+        .carCyan {
+            color: cyan;
+        }
+
+        .outline {
+            -webkit-text-stroke: 1px black;
+        }
+
     </style>
 </head>
 
@@ -243,6 +292,23 @@
     <main>
         @yield('content')
     </main>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js">
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+        integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous">
+    </script>
+
+    <!-- JQuery -->
+
+    <!-- Bootstrap tooltips -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/javascript" src="/js/bootstrap.js"></script>
+    <!-- MDB core JavaScript -->
+    <script type="text/javascript" src="/js/mdb.js"></script>
     <script>
         $(document).ready(function () {
 
@@ -254,4 +320,31 @@
         })
 
     </script>
+    <script src="/js/ntc.js"></script>
+    <script src="/js/colorPick.js"></script>
+    <script>
+        $(".colorPickSelector").colorPick({
+            'initialColor': '#3498db',
+            'allowRecent': true,
+            'recentMax': 5,
+            'allowCustomColor': false,
+            'palette': ["#1abc9c", "#16a085", "#2ecc71", "#27ae60", "#3498db", "#2980b9", "#9b59b6", "#8e44ad",
+                "#34495e", "#2c3e50", "#f1c40f", "#f39c12", "#e67e22", "#d35400", "#e74c3c", "#c0392b",
+                "#ecf0f1", "#bdc3c7", "#95a5a6", "#7f8c8d"
+            ],
+            'onColorSelected': function () {
+                this.element.css({
+                    'backgroundColor': this.color,
+                    'color': this.color
+                });
+                result = ntc.name(this.color);
+                console.log(this.color);
+                console.log(result[1]);
+                $("#carcolour").val(result[1]);
+            }
+        });
+
+    </script>
+
+
 </body>

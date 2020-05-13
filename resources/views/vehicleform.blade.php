@@ -54,22 +54,12 @@
                 <!-- Vehicle color -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="color">Colour</label></div>
-                    <div class="col-md-6"><select id="color" class="form-control fas" name="color">
-                            <option value="">Select Colour</option>
-                            <option value="White" class="fas fa-circle" style="color:#e1e1dd">&#xf111; White</option>
-                            <option value="Yellow" class="fas fa-circle" style="color:yellow">&#xf111; Yellow</option>
-                            <option value="Blue" class="fas fa-circle" style="color:blue">&#xf111; Blue</option>
-                            <option value="Red" class="fas fa-circle" style="color:red">&#xf111; Red</option>
-                            <option value="Green" class="fas fa-circle" style="color:green">&#xf111; Green</option>
-                            <option value="Black" class="fas fa-circle" style="color:black">&#xf111; Black</option>
-                            <option value="Brown" class="fas fa-circle" style="color:brown">&#xf111; Brown</option>
-                            <option value="Teal" class="fas fa-circle" style="color:teal">&#xf111; Teal</option>
-                            <option value="Purple" class="fas fa-circle" style="color:purple">&#xf111; Purple</option>
-                            <option value="Orange" class="fas fa-circle" style="color:orange">&#xf111; Orange</option>
-                            <option value="Cyan" class="fas fa-circle" style="color:cyan">&#xf111; Cyan</option>
-                        </select></div>
+                    <div class="col-md-6">
+                        <div class="colorPickSelector">hey</div>
+                        <input type="hidden" id="carcolour" value="" name="color">
+                    </div>
                 </div>
-
+                
                 <!-- IC number -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="license">Identification number</label></div>
@@ -112,7 +102,10 @@
             </form>
             <!-- Form -->
 
-            <h3><center>Disclaimer</center></h3><hr>
+            <h3>
+                <center>Disclaimer</center>
+            </h3>
+            <hr>
             <h5>For every registration, a fee of RM3 will be deducted from your salary.</h5>
         </div>
     </div>
