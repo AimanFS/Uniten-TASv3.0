@@ -15,7 +15,7 @@ class AddForeignKeyToVehiclesTable extends Migration
     {
         Schema::table('vehicles', function (Blueprint $table) {
             $table->bigInteger('staff_id')->unsigned()->index()->nullable();
-            $table->foreign('staff_id')->references('id')->on('staffs');
+            $table->foreign('staff_id')->references('id')->on('staffs')->onDelete('cascade');
         });
     }
 

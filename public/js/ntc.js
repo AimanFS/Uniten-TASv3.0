@@ -114,7 +114,7 @@ var ntc = {
 
   names: [
 ["000000", "Black"],
-["000080", "Navy Blue"],
+["000080", "Blue"],
 ["0000C8", "Dark Blue"],
 ["0000FF", "Blue"],
 ["000741", "Stratos"],

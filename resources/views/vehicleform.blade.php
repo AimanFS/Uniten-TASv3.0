@@ -55,7 +55,7 @@
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="color">Colour</label></div>
                     <div class="col-md-6">
-                        <div class="colorPickSelector">hey</div>
+                        <div class="colorPickSelector border rounded mb-0">choose</div>
                         <input type="hidden" id="carcolour" value="" name="color">
                     </div>
                 </div>

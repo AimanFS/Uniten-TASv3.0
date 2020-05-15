@@ -129,10 +129,21 @@ class VehicleController extends Controller
      * @param  \App\Vehicle  $vehicle
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Vehicle $vehicle)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->id;
+
+        $vehicle = Vehicle::find($id)->delete();
+
+        // delete related   
+        //$vehicle->staff->each->delete();
+        //$delete =  $vehicle->delete();
+        
+
+        return redirect()->back();
     }
+
+
 
     public function home(Request $request){
         $staff = Auth::user()->id;

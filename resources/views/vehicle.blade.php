@@ -48,6 +48,10 @@
                             <a href="">Plate Number
                             </a>
                         </th>
+                        <th class="th-lg">
+                            <a href="">Options
+                            </a>
+                        </th>
                     </tr>
                 </thead>
                 <!--Table head-->
@@ -61,6 +65,14 @@
                         <td>{{$vehicles->model}}</td>
                         <td>{{$vehicles->color}}</td>
                         <td>{{$vehicles->platenumber}}</td>
+                        <td><form method="POST" action="{{route('Vehicle.destroy', $vehicles->id)}}" >
+                            <input type="hidden" name="id" value="{{$vehicles->id}}">
+                            
+                            @method('delete')
+                            @csrf
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
                     </tr>
                     @endforeach
                 </tbody>
