@@ -34,7 +34,7 @@
         <nav class="navbar navbar-expand-md  bg-purple shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'UNITEN TAS v3.0') }}
+                    UNITEN TAS v3.0
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"

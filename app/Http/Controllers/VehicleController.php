@@ -28,8 +28,11 @@ class VehicleController extends Controller
         //$dpt = Auth::user()->department_id;
         //$department = User::with('department')->where('id', '=', $staff)->get();
         
+        //dd($staff);
 
-        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
+        $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->get();
+        
+        //dd($vehicles);
 
         //return $department;
         return view ('vehicle')->with('vehicle', $vehicles);//->with('department', $department);
@@ -85,6 +88,7 @@ class VehicleController extends Controller
             "license" => $license,
             "platenumber" =>  strtoupper($platenumber),
             "staff_id" => Auth::user()->id,
+            "state" => 0,
         ]);
         return redirect()->action('VehicleController@index');
     }
@@ -143,13 +147,22 @@ class VehicleController extends Controller
         return redirect()->back();
     }
 
+    public function deletecar(Request $request)
+    {
+        $id = $request->id;
+        $staff = Auth::user()->id;
+        $vehicle = Vehicle::where('id', $id)->update(['state' => 1]);
+
+        return redirect()->back();
+    }
 
 
     public function home(Request $request){
         $staff = Auth::user()->id;
-        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
-        $attendance = Attendance::with('vehicle')->get();
+        $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->get();
+        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->get();
         //return($attendance);
+
         return view ('home')->with('vehicle', $vehicles)->with('attendance', $attendance);
     }
 

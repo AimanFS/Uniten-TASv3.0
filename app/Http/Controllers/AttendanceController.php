@@ -20,7 +20,7 @@ class AttendanceController extends Controller
         //
         $staff = Auth::user()->id;
         $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
-        $attendance = Attendance::with('vehicle')->get();
+        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->get();
         //return($attendance);
         return view ('attendance')->with('vehicle', $vehicles)->with('attendance', $attendance);
     }

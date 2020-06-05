@@ -21,6 +21,7 @@ class CreateVehiclesTable extends Migration
             $table->string('icnum');
             $table->string('license');
             $table->string('platenumber');
+            $table->string('state')->nullable();
             $table->timestamps();
         });
     }

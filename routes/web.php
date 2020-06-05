@@ -28,3 +28,5 @@ Route::post('/profile', 'VehicleController@updateprofile');
 Route::resource('Vehicle', 'VehicleController');
 
 Route::resource('Attendance', 'AttendanceController');
+
+Route::delete('/deletecar/{id}', 'VehicleController@deletecar');

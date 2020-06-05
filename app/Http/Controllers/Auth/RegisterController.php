@@ -72,11 +72,13 @@ class RegisterController extends Controller
         
         return view('auth.register',compact('department'));
     }
+    
     protected function create(array $data)
     {
+        $username = str_replace(' ', '', $data['username']);
         return User::create([
             'name' => $data['name'],
-            'username' => $data['username'],
+            'username' => strtoupper($data['username']),
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'department_id' => $data['department_id'],

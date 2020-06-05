@@ -47,4 +47,8 @@ class User extends Authenticatable
     public function department(){
         return $this->belongsTo('App\Department', 'department_id');
     }
+
+    public function attendance(){
+        return $this->hasOne('App\Attendance');
+    }
 }
