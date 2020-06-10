@@ -202,6 +202,7 @@ svg {
 }
 
 table {
+  width:100%;
   border-collapse: collapse;
 }
 
@@ -2012,6 +2013,7 @@ pre code {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    border-collapse: collapse;
   }
   .table-responsive-xl > .table-bordered {
     border: 0;
@@ -2022,6 +2024,7 @@ pre code {
   display: block;
   width: 100%;
   overflow-x: auto;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -10220,6 +10223,5 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-
 
 /*# sourceMappingURL=bootstrap.css.map */
