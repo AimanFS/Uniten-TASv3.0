@@ -19,8 +19,8 @@ class AttendanceController extends Controller
     {
         //
         $staff = Auth::user()->id;
-        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->get();
-        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->get();
+        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->orderBy('created_at','desc')->get();
+        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->orderBy('created_at','desc')->get();
         //return($attendance);
         return view ('attendance')->with('vehicle', $vehicles)->with('attendance', $attendance);
     }

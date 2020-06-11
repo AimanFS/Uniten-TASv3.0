@@ -96,6 +96,14 @@
             border-radius: 0.25rem;
         }
 
+        .my-custom-scrollbar {
+            position: relative;
+            height: 350px;
+            overflow: auto;
+        }
+        .table-wrapper-scroll-y {
+            display: block;
+        }
     </style>
 </head>
 
@@ -218,8 +226,16 @@
                     </tbody>
                     <tbody>
                         <tr>
-                            <th scope="row"><strong>Staff ID No.</strong></th>
+                            <th scope="row"><strong>Staff No.</strong></th>
                             <td>{{ Auth::user()->username }} </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><strong>Email</strong></th>
+                            <td>{{ Auth::user()->email }} </td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><strong>Phone number</strong></th>
+                            <td>{{ Auth::user()->phoneno }} </td>
                         </tr>
                         <tr>
                             <th scope="row"><strong>Department Unit</strong></th>

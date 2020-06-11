@@ -5,7 +5,7 @@
 
     <!-- Card image -->
     <div class="profileview view-cascade overlay">
-        <img class="img-fluid rounded-circle" src="/images/{{ Auth::user()->avatar }}">
+        <img class="img-fluid rounded-circle" src="/images/{{ Auth::user()->avatar }}" id="blah">
     </div>
     <!-- Card content -->
     <div class="card-body card-body-cascade">
@@ -17,21 +17,36 @@
                     <td scope="col">{{ Auth::user()->name }} </td>
                 </tr>
                 <tr>
-                    <th scope="row"><strong>Staff ID No.</strong></th>
+                    <th scope="row"><strong>Staff No.</strong></th>
                     <td>{{ Auth::user()->username }} </td>
                 </tr>
                 <tr>
+                    <th scope="row"><strong>Email</strong></th>
+                    <td>{{ Auth::user()->email }} </td>
+                </tr>
+                <tr>
+                    <th scope="row"><strong>Phone number</strong></th>
+                    <td>{{ Auth::user()->phoneno }} </td>
+                </tr>
+                <tr>
                     <th scope="row"><strong>Department Unit</strong></th>
-                    <td>{{ Auth::user()->department->name }}</td>
+                    <td>
+                        <form enctype="multipart/form-data" action="/profile" method="POST">
+                        <input type="hidden" value="{{ Auth::user()->department->name }}">Current department: {{ Auth::user()->department->name }}</input>
+                        <select id="department_id" class="form-control" name="department_id"> 
+                        @foreach($department as $dpt)
+                        <option value="{{ $dpt->id }}">{{ $dpt->name }}</option>
+                        @endforeach
+                        </select>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row"><strong>Change profile picture</strong></th>
                     <td>
-                        <form class="md-form" enctype="multipart/form-data" action="/profile" method="POST">
                             <div class="file-field">
                                 <a class="btn-floating purple-gradient mt-0 float-left">
                                     <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-                                    <input type="file" name="avatar">
+                                    <input id="picupload" type="file" name="avatar">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 </a>
                                 <div class="file-path-wrapper">

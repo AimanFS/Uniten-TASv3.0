@@ -30,3 +30,5 @@ Route::resource('Vehicle', 'VehicleController');
 Route::resource('Attendance', 'AttendanceController');
 
 Route::delete('/deletecar/{id}', 'VehicleController@deletecar');
+
+Route::get('/editvehicle/{id}', 'VehicleController@vehicleeditpage');

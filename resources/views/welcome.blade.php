@@ -80,12 +80,16 @@
             @endif
 
             <div class="content">
+
+                <div class="view">
+                    <img src="/images/taslogo.png">
+                </div>
                 <div class="title m-b-md">
-                    UNITEN TAS v3.0
+                    UNITEN Time Attendance System
                 </div>
 
                 <div class="links">
-                    <a href="https://www.uniten.edu.my">UNITEN</a>
+                    <h2>TAS v3.0</h2>
                 </div>
             </div>
         </div>

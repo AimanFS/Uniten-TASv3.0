@@ -13,6 +13,7 @@
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
+                        <!-- Name field -->
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -28,6 +29,7 @@
                             </div>
                         </div>
 
+                        <!-- Username field -->
                         <div class="form-group row">
                             <label for="username"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Staff No') }}</label>
@@ -45,6 +47,7 @@
                             </div>
                         </div>
 
+                        <!-- Email field -->
                         <div class="form-group row">
                             <label for="email"
                                 class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
@@ -61,6 +64,24 @@
                             </div>
                         </div>
 
+                        <!-- Phone number field -->
+                        <div class="form-group row">
+                            <label for="phoneno"
+                                class="col-md-4 col-form-label text-md-right">{{ __('Phone number') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="phoneno" type="text" class="form-control @error('phoneno') is-invalid @enderror"
+                                    name="phoneno" value="{{ old('phoneno') }}" required autocomplete="phoneno">
+
+                                @error('phoneno')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <!-- Password field -->
                         <div class="form-group row">
                             <label for="password"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -78,6 +99,7 @@
                             </div>
                         </div>
 
+                        <!-- Confirm password field -->
                         <div class="form-group row">
                             <label for="password-confirm"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
@@ -87,6 +109,8 @@
                                     name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+                        <!-- Department field -->
                         <div class="form-group row">
                             <label for="department_id"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>

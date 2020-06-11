@@ -20,7 +20,7 @@
 
     <div class="px-4">
 
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
             <!--Table-->
             <table class="table">
 
@@ -28,7 +28,7 @@
                 <thead>
                     <tr>
                         <th class="th-lg">
-                            <a>Staff ID No.
+                            <a>Staff No.
                             </a>
                         </th>
                         <th class="th-lg">
@@ -65,7 +65,10 @@
                         <td>{{$vehicles->model}}</td>
                         <td>{{$vehicles->color}}</td>
                         <td>{{$vehicles->platenumber}}</td>
-                    <td>    <form method="POST" action="/deletecar/{{$vehicles->id}}" >
+                    <td>
+                        <a href ="/editvehicle/{{$vehicles->id}}">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
+                        <form method="POST" action="/deletecar/{{$vehicles->id}}" >
                             @method('delete')
                             @csrf
                             <button type="submit" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>

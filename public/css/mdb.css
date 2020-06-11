@@ -11173,7 +11173,7 @@ body.scrollable {
     height: auto;
     padding: .6rem 0 .4rem 0;
     margin: 0 0 .5rem 0;
-    background-color: transparent;
+    /*background-color: transparent;*/
     border-radius: 0
 }
 

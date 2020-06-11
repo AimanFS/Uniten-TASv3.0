@@ -24,7 +24,7 @@
 
                 <!-- E-mail -->
                 <div class="row">
-                    <div class="col-md-6 col-form-label"><label for="username">Staff ID No.</label></div>
+                    <div class="col-md-6 col-form-label"><label for="username">Staff No.</label></div>
                     <div class="col-md-6"><input type="text" id="username" class="form-control"
                             placeholder="{{ Auth::user()->username }}" disabled></div>
                 </div>

@@ -17,7 +17,7 @@
 
     <div class="px-4">
 
-        <div class="table-responsive text-nowrap">
+        <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
             <!--Table-->
             <table class="table">
 
@@ -25,7 +25,7 @@
                 <thead>
                     <tr>
                         <th class="th-lg">
-                            <a>Staff ID No.
+                            <a>Staff No.
                             </a>
                         </th>
                         <th class="th-lg">
