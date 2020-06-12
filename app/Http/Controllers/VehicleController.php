@@ -9,6 +9,7 @@ use App\Vehicle;
 use App\Department;
 use App\User;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class VehicleController extends Controller
 {
@@ -30,7 +31,7 @@ class VehicleController extends Controller
         
         //dd($staff);
 
-        $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->orderBy('created_at','desc')->get();
+        $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->orderBy('created_at','desc')->paginate(3);
         
         //dd($vehicles);
 

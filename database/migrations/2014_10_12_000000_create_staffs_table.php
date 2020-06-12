@@ -21,6 +21,7 @@ class CreateStaffsTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('phoneno')->unique();
             $table->string('password');
+            $table->boolean('is_admin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

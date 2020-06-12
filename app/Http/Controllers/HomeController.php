@@ -1,9 +1,13 @@
 <?php
 
-use App\Vehicle;
-use App\User;
-use App\Department;
 namespace App\Http\Controllers;
+
+use Auth;
+use App\Attendance;
+use App\Vehicle;
+use App\Department;
+use App\User;
+use RealRashid\SweetAlert\Facades\Alert;
 
 use Illuminate\Http\Request;
 
@@ -27,6 +31,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function adminHome()
+    {
+        //$department = Department::all();
+        $id = Auth::id();
+        $staffs = User::with('vehicle','department')->where('id', '!=', $id)->get();
+        //return($staffs);
+        return view('adminHome',compact('staffs'));
     }
 
 }

@@ -1,19 +1,17 @@
-@extends('layouts.main')
+@extends('layouts.adminmain')
 
 @section('contents')
-<br>
-<!-- Table with panel -->
-<div class="card card-cascade narrower">
+ <!-- Table with panel -->
+ <div class="card card-cascade narrower">
 
     <!--Card image-->
     <div
         class="view view-cascade gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
-        <a href="" class="white-text mx-3">Vehicle</a>
+        <a href="" class="white-text mx-3">Attendance</a>
 
-
-        <a href="{{route('Vehicle.create')}}"><button class="btn btn-rounded purple-gradient">Register Vehicle</button></a>
-
+        <a href="{{ url('Attendance')}}"><button class="btn btn-rounded purple-gradient">All
+                attendance</button></a>
 
     </div>
     <!--/Card image-->
@@ -32,24 +30,23 @@
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Brand
+                            <a href="">Time In
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Model
+                            <a href="">Location In
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Colour
-
+                            <a href="">Time Out
+                            </a>
+                        </th>
+                        <th class="th-lg">
+                            <a href="">Location Out
                             </a>
                         </th>
                         <th class="th-lg">
                             <a href="">Plate Number
-                            </a>
-                        </th>
-                        <th class="th-lg">
-                            <a href="">Options
                             </a>
                         </th>
                     </tr>
@@ -58,33 +55,30 @@
 
                 <!--Table body-->
                 <tbody>
-                    @foreach($vehicle as $vehicles)
+                    @foreach($staffs as $stf)
                     <tr>
-                        <td>{{ Auth::user()->username}}</td>
-                        <td>{{$vehicles->brand}}</td>
-                        <td>{{$vehicles->model}}</td>
-                        <td>{{$vehicles->color}}</td>
-                        <td>{{$vehicles->platenumber}}</td>
-                    <td>
-                        <a href ="/editvehicle/{{$vehicles->id}}">
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-edit"></i></button></a>
-                        <form method="POST" action="/deletecar/{{$vehicles->id}}" >
-                            @method('delete')
-                            @csrf
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </td>
+                        <td>{{$stf->name}}</td>
+                        <td>{{$stf->username}}</td>
+                        <td>{{$stf->email}}</td>
+                        <td>{{$stf->phoneno}}</td>
+                        <td>{{$stf->department->name}}</td>
+                        <td>
+                            <ul>
+                            @foreach ($stf->vehicle as $plate)
+                            <li> {{$plate->platenumber}}</li>
+                               
+                            @endforeach
+                        </ul>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
                 <!--Table body-->
             </table>
-            {{$vehicle->links()}}
             <!--Table-->
         </div>
 
     </div>
 
 </div>
-<!-- Table with panel -->
 @endsection

@@ -132,23 +132,9 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{ route('home') }}"><i class="fas fa-home iconcustom"></i>Home</a>
+                        <li><a href="{{ route('home') }}"><i class="fas fa-home iconcustom"></i>Admin Home</a>
                         </li>
-                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check iconcustom"></i>Attendance</a>
-                        </li>
-                        <li><a class="collapsible-header waves-effect arrow-r"><i
-                                    class="fas fa-car iconcustom"></i>Vehicles<i
-                                    class="fas fa-angle-down rotate-icon"></i></a>
-                            <div class="collapsible-body">
-                                <ul>
-                                    <li><a href="{{ url('Vehicle')}}" class="waves-effect">View Registered Vehicle</a>
-                                    </li>
-                                    <li><a href="{{route('Vehicle.create')}}" class="waves-effect">Register Vehicle</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li><a><i class="far fa-file-alt iconcustom"></i> Out of Office Form</a>
+                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check iconcustom"></i>Staffs</a>
                         </li>
                         <li><a><i class="fas fa-exclamation iconcustom"></i>Violations</a>
                         </li>
@@ -193,12 +179,7 @@
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/profile">
-                            Profile
-                        </a>
-                        <a class="dropdown-item" href="/admin/home">
-                            Admin
-                        </a>
+                        
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -218,45 +199,6 @@
 
     <!--Main Layout-->
     <main>
-        <!-- Card Narrower -->
-        <div class="profilecard card-cascade narrower rgba-purple-strong">
-
-            <!-- Card image -->
-            <div class="profileview view-cascade overlay">
-                <img class="img-fluid rounded-circle" src="/images/{{ Auth::user()->avatar }}">
-            </div>
-            <!-- Card content -->
-            <div class="card-body card-body-cascade">
-                <table class="table text-nowrap table-borderless text-light border border-white"
-                    style="background-color: #3C3B54">
-                    <tbody>
-                        <tr>
-                            <th scope="col"><strong>Name</strong></th>
-                            <td scope="col">{{ Auth::user()->name }} </td>
-                        </tr>
-                    </tbody>
-                    <tbody>
-                        <tr>
-                            <th scope="row"><strong>Staff No.</strong></th>
-                            <td>{{ Auth::user()->username }} </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><strong>Email</strong></th>
-                            <td>{{ Auth::user()->email }} </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><strong>Phone number</strong></th>
-                            <td>{{ Auth::user()->phoneno }} </td>
-                        </tr>
-                        <tr>
-                            <th scope="row"><strong>Department Unit</strong></th>
-                            <td scope="row">{{ Auth::user()->department->name }}</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
 
         <!-- Card Narrower -->
         @yield('contents')
