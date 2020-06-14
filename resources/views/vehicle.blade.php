@@ -7,7 +7,7 @@
 
     <!--Card image-->
     <div
-        class="view view-cascade gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        class="view view-cascade rgba-purple-strong narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
         <a href="" class="white-text mx-3">Vehicle</a>
 

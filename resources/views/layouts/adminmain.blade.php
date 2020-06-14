@@ -132,7 +132,7 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{ route('home') }}"><i class="fas fa-home iconcustom"></i>Admin Home</a>
+                        <li><a href="{{ route('admin.home') }}"><i class="fas fa-home iconcustom"></i>Admin Home</a>
                         </li>
                         <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check iconcustom"></i>Staffs</a>
                         </li>
