@@ -104,7 +104,7 @@
 
         .my-custom-scrollbar {
             position: relative;
-            height: 350px;
+            height: 375px;
             overflow: auto;
         }
 
@@ -147,8 +147,6 @@
                                     </li>
                                 </ul>
                             </div>
-                        </li>
-                        <li><a><i class="far fa-file-alt iconcustom"></i> Out of Office Form</a>
                         </li>
                         <li><a><i class="fas fa-exclamation iconcustom"></i>Violations</a>
                         </li>

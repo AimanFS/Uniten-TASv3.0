@@ -84,6 +84,7 @@ class RegisterController extends Controller
             'phoneno' => $data['phoneno'],
             'password' => Hash::make($data['password']),
             'department_id' => $data['department_id'],
+            'is_admin' => '0',
         ]);
     }
 }

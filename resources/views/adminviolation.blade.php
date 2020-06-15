@@ -1,23 +1,21 @@
-@extends('layouts.main')
+@extends('layouts.adminmain')
 
 @section('contents')
-<br>
+<!-- Table with panel -->
 <div class="card card-cascade narrower">
 
     <!--Card image-->
     <div
-        class="view view-cascade gradient-card-header rgba-purple-strong narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        class="view view-cascade gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
-        <a href="" class="white-text mx-3">Attendance</a>
-
-        <button class="btn btn-secondary btn-rounded">Filter</button>
+        <a href="" class="white-text mx-3">Staff Log w/Violations</a>
 
     </div>
     <!--/Card image-->
 
     <div class="px-4">
 
-        <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="table-responsive text-nowrap">
             <!--Table-->
             <table class="table">
 
@@ -45,7 +43,7 @@
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Plate Number
+                            <a href="">Vehicle Used
                             </a>
                         </th>
                     </tr>
@@ -56,7 +54,7 @@
                 <tbody>
                     @foreach($attendance as $attend)
                     <tr>
-                        <td>{{ Auth::user()->username}}</td>
+                        <td>{{$attend->staff->username}}</td>
                         <td>{{$attend->timein}}</td>
                         <td>{{$attend->locationin}}</td>
                         <td>{{$attend->timeout}}</td>
@@ -73,7 +71,5 @@
 
     </div>
 
-</div>
-<!-- Table with panel -->
 </div>
 @endsection

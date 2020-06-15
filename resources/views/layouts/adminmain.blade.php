@@ -103,7 +103,7 @@
         }
 
         .my-custom-scrollbar {
-            position: relative;
+            position:fixed;
             height: 350px;
             overflow: auto;
         }
@@ -132,11 +132,9 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{ route('admin.home') }}"><i class="fas fa-home iconcustom"></i>Admin Home</a>
+                        <li><a href="{{ route('admin.home') }}"><i class="fas fa-home iconcustom"></i>Staff List</a>
                         </li>
-                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check iconcustom"></i>Staffs</a>
-                        </li>
-                        <li><a><i class="fas fa-exclamation iconcustom"></i>Violations</a>
+                        <li><a href="{{ route('admin.violation')}}"><i class="fas fa-user-check iconcustom"></i>Staff Violation</a>
                         </li>
                     </ul>
                 </li>

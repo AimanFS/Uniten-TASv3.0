@@ -1,24 +1,21 @@
 @extends('layouts.adminmain')
 
 @section('contents')
- <!-- Table with panel -->
- <div class="card card-cascade narrower">
+<!-- Table with panel -->
+<div class="card card-cascade narrower">
 
     <!--Card image-->
     <div
         class="view view-cascade gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
-        <a href="" class="white-text mx-3">Attendance</a>
-
-        <a href="{{ url('Attendance')}}"><button class="btn btn-rounded purple-gradient">All
-                attendance</button></a>
+        <a href="" class="white-text mx-3">Staff List</a>
 
     </div>
     <!--/Card image-->
 
     <div class="px-4">
 
-        <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="table-responsive text-nowrap">
             <!--Table-->
             <table class="table">
 
@@ -26,27 +23,27 @@
                 <thead>
                     <tr>
                         <th class="th-lg">
-                            <a>Staff No.
+                            <a>Name
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Time In
+                            <a href="">Staff No.
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Location In
+                            <a href="">Email
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Time Out
+                            <a href="">Phone Number
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Location Out
+                            <a href="">Department
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Plate Number
+                            <a href="">Vehicles
                             </a>
                         </th>
                     </tr>
@@ -64,17 +61,79 @@
                         <td>{{$stf->department->name}}</td>
                         <td>
                             <ul>
-                            @foreach ($stf->vehicle as $plate)
-                            <li> {{$plate->platenumber}}</li>
-                               
-                            @endforeach
-                        </ul>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                    data-target="#centralModalSm">
+                                    List
+                                </button>
+
+                                <!-- Central Modal Small -->
+                                <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel" aria-hidden="true">
+
+                                    <!-- Change class .modal-sm to change the size of the modal -->
+                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+
+
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title w-100" id="myModalLabel">Vehicle List</h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="container-fluid">
+                                                    <table class="table">
+                                                        <!--Table head-->
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="th-lg">
+                                                                    <a href="">Brand
+                                                                    </a>
+                                                                </th>
+                                                                <th class="th-lg">
+                                                                    <a href="">Model
+                                                                    </a>
+                                                                </th>
+                                                                <th class="th-lg">
+                                                                    <a href="">Colour
+                                                                    </a>
+                                                                </th>
+                                                                <th class="th-lg">
+                                                                    <a href="">Plate Number
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <!--Table body-->
+                                                        <tbody>
+                                                            @foreach($stf->vehicle->sortByDesc('created_at') as $vehicles)
+                                                            <tr>
+                                                                <td>{{$vehicles->brand}}</td>
+                                                                <td>{{$vehicles->model}}</td>
+                                                                <td>{{$vehicles->color}}</td>
+                                                                <td>{{$vehicles->platenumber}}</td>
+                                                            </tr>
+                                                            @endforeach
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Central Modal Small -->
+
+                            </ul>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
                 <!--Table body-->
             </table>
+            {{$staffs->links()}}
             <!--Table-->
         </div>
 

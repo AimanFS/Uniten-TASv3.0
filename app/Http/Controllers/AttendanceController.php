@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Staff;
+use App\User;
 use App\Vehicle;
 use Auth;
 use App\Attendance;
@@ -19,8 +19,8 @@ class AttendanceController extends Controller
     {
         //
         $staff = Auth::user()->id;
-        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->orderBy('created_at','desc')->get();
-        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->orderBy('created_at','desc')->get();
+        $vehicles = Vehicle::where('staff_id', $staff)->with('staff')->orderBy('created_at','desc')->paginate(4);
+        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->orderBy('created_at','desc')->paginate(4);
         //return($attendance);
         return view ('attendance')->with('vehicle', $vehicles)->with('attendance', $attendance);
     }
@@ -89,5 +89,15 @@ class AttendanceController extends Controller
     public function destroy(Attendance $attendance)
     {
         //
+    }
+
+    public function violationtype()
+    {
+        $id = Auth::id();
+        $staff = User::with('vehicle','department')->where('id', '!=', $id)->get();
+        $attendance = Attendance::with('vehicle','staff')->paginate(10);
+
+        //return ($attendance);
+        return view('adminviolation')->with('attendance', $attendance);
     }
 }

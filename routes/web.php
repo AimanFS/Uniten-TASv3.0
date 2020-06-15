@@ -34,3 +34,5 @@ Route::delete('/deletecar/{id}', 'VehicleController@deletecar');
 Route::get('/editvehicle/{id}', 'VehicleController@vehicleeditpage');
 
 Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+
+Route::get('admin/violation', 'AttendanceController@violationtype')->name('admin.violation');

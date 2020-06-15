@@ -37,7 +37,7 @@ class HomeController extends Controller
     {
         //$department = Department::all();
         $id = Auth::id();
-        $staffs = User::with('vehicle','department')->where('id', '!=', $id)->get();
+        $staffs = User::with('vehicle','department')->where('id', '!=', $id)->paginate(6);
         //return($staffs);
         return view('adminHome',compact('staffs'));
     }

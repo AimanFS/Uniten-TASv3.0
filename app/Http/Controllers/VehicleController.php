@@ -173,8 +173,8 @@ class VehicleController extends Controller
 
     public function home(Request $request){
         $staff = Auth::user()->id;
-        $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->orderBy('created_at','desc')->get();
-        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->orderBy('created_at','desc')->get();
+        $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->orderBy('created_at','desc')->latest()->take(5)->get();
+        $attendance = Attendance::with('vehicle')->where('staff_id', $staff)->orderBy('created_at','desc')->latest()->take(5)->get();
         //return($attendance);
 
         return view ('home')->with('vehicle', $vehicles)->with('attendance', $attendance);
@@ -190,6 +190,7 @@ class VehicleController extends Controller
         $id = Auth::user()->id;
         $department = User::where('id', $id)->first()->update([
             'department_id' => $request->input('department_id'),
+            'phoneno' => $request->input('phoneno'),
         ]);
 
         if($request->hasFile('avatar')){

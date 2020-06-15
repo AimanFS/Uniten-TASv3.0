@@ -26,33 +26,36 @@
                 </tr>
                 <tr>
                     <th scope="row"><strong>Phone number</strong></th>
-                    <td>{{ Auth::user()->phoneno }} </td>
+                    <form enctype="multipart/form-data" action="/profile" method="POST">
+                        <td><input type="text" class="form-control" value="{{ Auth::user()->phoneno }}" name="phoneno">
+                        </td>
                 </tr>
                 <tr>
                     <th scope="row"><strong>Department Unit</strong></th>
                     <td>
-                        <form enctype="multipart/form-data" action="/profile" method="POST">
-                        <input type="hidden" value="{{ Auth::user()->department->name }}">Current department: {{ Auth::user()->department->name }}</input>
-                        <select id="department_id" class="form-control" name="department_id"> 
-                        @foreach($department as $dpt)
-                        <option value="{{ $dpt->id }}">{{ $dpt->name }}</option>
-                        @endforeach
+
+                        <input type="hidden" value="{{ Auth::user()->department->name }}">Current department:
+                        {{ Auth::user()->department->name }}</input>
+                        <select id="department_id" class="form-control" name="department_id">
+                            @foreach($department as $dpt)
+                            <option value="{{ $dpt->id }}">{{ $dpt->name }}</option>
+                            @endforeach
                         </select>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><strong>Change profile picture</strong></th>
                     <td>
-                            <div class="file-field">
-                                <a class="btn-floating purple-gradient mt-0 float-left">
-                                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-                                    <input id="picupload" type="file" name="avatar">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                </a>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text" placeholder="Upload your file">
-                                </div>
+                        <div class="file-field">
+                            <a class="btn-floating purple-gradient mt-0 float-left">
+                                <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                                <input id="picupload" type="file" name="avatar">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </a>
+                            <div class="file-path-wrapper">
+                                <input class="file-path validate" type="text" placeholder="Upload your file">
                             </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>

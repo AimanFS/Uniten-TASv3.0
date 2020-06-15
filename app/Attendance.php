@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Attendance extends Model
 {
     public function vehicle(){
-        return $this->belongsTo('App\Vehicle');
+        return $this->belongsTo('App\Vehicle', 'vehicle_id');
     }
 
     public function staff(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'staff_id');
     }
 }
