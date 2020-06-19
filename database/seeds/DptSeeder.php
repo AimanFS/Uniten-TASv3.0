@@ -34,7 +34,7 @@ class DptSeeder extends Seeder
             ["brand" => "Toyota", "model" => "Avanza", "color" => "Green", "icnum" => "identifications\icexample.jpg", "license" => "licenses\licenseexample.jpg", "platenumber" => "BJY6688", "staff_id" => "2", "state" =>"0", "created_at" => now(), "updated_at" => now()],
         ]);
         DB::table('attendances')->insert([
-            ["timein" => now(), "timeout" => now()->addHours(5), "locationin" => "CCI", "locationout" => "COE", "vehicle_id" => "1", "staff_id" => "2"],
+            ["timein" => now(), "timeout" => now()->addHours(5), "locationin" => "CCI", "locationout" => "COE", "vehicle_id" => "1", "staff_id" => "2", "created_at" => now(), "updated_at" => now()],
         ]);
     }
 }

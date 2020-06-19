@@ -60,10 +60,26 @@
                                 @foreach($attendance as $attend)
                                 <tr>
                                     <td>{{ Auth::user()->username}}</td>
+                                    @if($attend->timein == NULL)
+                                    <td>N/A</td>
+                                    @else
                                     <td>{{$attend->timein}}</td>
+                                    @endif
+                                    @if($attend->locationin == NULL)
+                                    <td>N/A</td>
+                                    @else
                                     <td>{{$attend->locationin}}</td>
+                                    @endif
+                                    @if($attend->timeout == NULL)
+                                    <td>N/A</td>
+                                    @else
                                     <td>{{$attend->timeout}}</td>
+                                    @endif
+                                    @if($attend->locationout == NULL)
+                                    <td>N/A</td>
+                                    @else
                                     <td>{{$attend->locationout}}</td>
+                                    @endif
                                     <td>{{$attend->vehicle->platenumber}}</td>
                                 </tr>
                                 @endforeach
@@ -80,24 +96,15 @@
             <div class="card card-cascade narrower">
                 <div
                     class="view view-cascade rgba-purple-strong narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
                     <a href="" class="white-text mx-3">Vehicle</a>
-
-
                     <a href="{{route('Vehicle.create')}}"><button class="btn btn-secondary btn-rounded">Register
                             Vehicle</button></a>
-
-
                 </div>
                 <!--/Card image-->
-
-
                 <div class="px-4">
-
                     <div class="table-responsive text-nowrap table-wrapper-scroll-y my-custom-scrollbar">
                         <!--Table-->
                         <table class="table">
-
                             <!--Table head-->
                             <thead>
                                 <tr>

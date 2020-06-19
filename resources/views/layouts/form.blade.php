@@ -24,9 +24,10 @@
     <link href="/css/bootstrap.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
     <link href="/css/mdb.css" rel="stylesheet">
+    <link href="/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/colorPick.css">
 
-    <script src="https://kit.fontawesome.com/a0abfe3bf3.js" crossorigin="anonymous"></script>
+    <script src="/js/all.js" crossorigin="anonymous"></script>
     <!-- Car Brand and Model dropdown js -->
     <script type="text/javascript">
         function populate(brd, mdl) {
@@ -224,9 +225,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a><i class="far fa-file-alt iconcustom"></i> Out of Office Form</a>
-                        </li>
-                        <li><a><i class="fas fa-exclamation iconcustom"></i>Violations</a>
+                        <li><a href="{{ url('violation')}}"><i class="fas fa-exclamation iconcustom"></i>Violations</a>
                         </li>
                     </ul>
                 </li>

@@ -1,23 +1,23 @@
-@extends('layouts.adminmain')
+@extends('layouts.main')
 
 @section('contents')
-<!-- Table with panel -->
+<br>
 <div class="card card-cascade narrower">
 
     <!--Card image-->
     <div
-        class="view view-cascade gradient-card-header purple-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
+        class="view view-cascade gradient-card-header rgba-purple-strong narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 
-        <a href="" class="white-text mx-3">Unapproved violation(s)</a>
+        <a href="" class="white-text mx-3">Violation Logs</a>
 
     </div>
     <!--/Card image-->
 
     <div class="px-4">
 
-        <div class="table-responsive">
+        <div class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">
             <!--Table-->
-            <table class="table" style="table-layout: fixed;">
+            <table class="table">
 
                 <!--Table head-->
                 <thead>
@@ -43,11 +43,11 @@
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Vehicle Used
+                            <a href="">Plate Number
                             </a>
                         </th>
                         <th class="th-lg">
-                            <a href="">Violation(s)
+                            <a href="">Violation
                             </a>
                         </th>
                         <th class="th-lg">
@@ -62,11 +62,27 @@
                 <tbody>
                     @foreach($attendance as $attend)
                     <tr>
-                        <td>{{$attend->staff->username}}</td>
+                        <td>{{$attend->staff->username }}</td>
+                        @if($attend->timein == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->timein}}</td>
+                        @endif
+                        @if($attend->locationin == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->locationin}}</td>
+                        @endif
+                        @if($attend->timeout == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->timeout}}</td>
+                        @endif
+                        @if($attend->locationout == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->locationout}}</td>
+                        @endif
                         <td>{{$attend->vehicle->platenumber}}</td>
                         <td>
                             <ul>
@@ -84,19 +100,27 @@
                                 <?php $time = date("H:i:s",strtotime($attend->timeout))?>
                                 @if($time < '17:15:00' ) <li>Early Leave</li>
                                     @endif
-                                @endif
+
+                                    @endif
+
                             </ul>
                         </td>
                         <td style="width:300px; word-wrap:break-word;">@if($attend->remark == NULL)
                             {{'No remark available!'}}
                             @else
                             {{$attend->remark}}</td>
-                            @endif
+                        @endif
+                        @if($attend->remark != NULL)
+                        <td style="width:300px; word-wrap:break-word;"><button type="button" class="btn btn-primary"
+                                data-toggle="modal" data-target="#centralModalSm" disabled>
+                                Add remark
+                            </button></td>
+                        @else
                         <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#centralModalSm">
-                                Option
+                                Add remark
                             </button>
 
                             <!-- Central Modal Small -->
@@ -109,32 +133,24 @@
 
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h4 class="modal-title w-100" id="myModalLabel">Remark approval</h4>
+                                            <h4 class="modal-title w-100" id="myModalLabel">Staff remark</h4>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="/adminapprove/{{$attend->id}}">
+                                            <form method="POST" action="/staffremark/{{$attend->id}}">
                                                 @csrf
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" class="form-check-input" id="approveyes"
-                                                        name="approve" value="Yes">
-                                                    <label class="form-check-label" for="approveyes">Yes</label>
+                                                <div class="md-form">
+                                                    <textarea id="remark" class="form-control md-textarea" length="120"
+                                                        rows="3" name="remark"></textarea>
+                                                    <label for="remark">Type your text</label>
                                                 </div>
-
-                                                <!-- Material inline 2 -->
-                                                <div class="form-check form-check-inline">
-                                                    <input type="radio" class="form-check-input" id="approveno"
-                                                        name="approve" value="No">
-                                                    <label class="form-check-label" for="approveno">No</label>
-                                                </div>
-
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary btn-sm">Approve</button>
+                                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                         </div>
                                         </form>
                                     </div>
@@ -142,6 +158,7 @@
                             </div>
                             <!-- Central Modal Small -->
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
@@ -153,5 +170,7 @@
 
     </div>
 
+</div>
+<!-- Table with panel -->
 </div>
 @endsection

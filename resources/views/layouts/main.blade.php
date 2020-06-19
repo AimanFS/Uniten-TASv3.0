@@ -24,13 +24,14 @@
     <script type="text/javascript" src="/js/bootstrap.js"></script>
     <!-- MDB core JavaScript -->
     <script type="text/javascript" src="/js/mdb.js"></script>
-    <script src="https://kit.fontawesome.com/a0abfe3bf3.js" crossorigin="anonymous"></script>
+    <script src="/js/all.js" crossorigin="anonymous"></script>
     <!-- sweetalert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script src="sweetalert2.all.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="sweetalert2.min.js"></script>
     <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="/css/all.css">
 
     <style>
         .content {
@@ -132,12 +133,12 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{ route('home') }}"><i class="fas fa-home iconcustom"></i>Home</a>
+                        <li><a href="{{ route('home') }}"><i class="fas fa-home fa-lg"></i>    Home</a>
                         </li>
-                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check iconcustom"></i>Attendance</a>
+                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check fa-lg"></i>   Attendance</a>
                         </li>
                         <li><a class="collapsible-header waves-effect arrow-r"><i
-                                    class="fas fa-car iconcustom"></i>Vehicles<i
+                                    class="fas fa-car fa-lg"></i>  Vehicles<i
                                     class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
@@ -148,7 +149,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a><i class="fas fa-exclamation iconcustom"></i>Violations</a>
+                        <li><a href="{{ url('violation')}}"><i class="fas fa-exclamation fa-lg"></i>    Violations</a>
                         </li>
                     </ul>
                 </li>

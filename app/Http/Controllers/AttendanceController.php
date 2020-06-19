@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\User;
 use App\Vehicle;
 use Auth;
@@ -91,13 +92,65 @@ class AttendanceController extends Controller
         //
     }
 
+    //violation page for staff
+    public function violation()
+    {
+        $id = Auth::user()->id;
+        
+        $attendance = Attendance::where('staff_id', $id)->where(function ($query){
+            $query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->orderBy('created_at', 'DESC')->with('vehicle','staff')->paginate(5);
+
+        //return ($attendance);
+        return view('violation')->with('attendance', $attendance);
+    }
+
+    //admin overlooking all violation without approval
     public function violationtype()
     {
         $id = Auth::id();
         $staff = User::with('vehicle','department')->where('id', '!=', $id)->get();
-        $attendance = Attendance::with('vehicle','staff')->paginate(10);
+        $attendance = Attendance::with('vehicle','staff')->where(function ($query){
+            $query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->where('approve', null)->orderBy('created_at', 'DESC')->paginate(10);
 
         //return ($attendance);
         return view('adminviolation')->with('attendance', $attendance);
+    }
+
+    //admin overlooking all violation with approval
+    public function violationapprove()
+    {
+        $id = Auth::id();
+        $staff = User::with('vehicle','department')->where('id', '!=', $id)->get();
+        $attendance = Attendance::with('vehicle','staff')->where(function ($query){
+            $query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->where(function($query){
+                $query->where('approve', '=', 'Yes')->orWhere('approve', '=', 'No');
+            })->orderBy('created_at', 'DESC')->paginate(10);
+
+        //return ($attendance);
+        return view('adminviolationapv')->with('attendance', $attendance);
+    }
+
+    //staff add remark
+    public function staffremark(Request $request)
+    {
+        $id = $request->id;
+        $attendance = Attendance::with('vehicle','staff')->where('id', $id)->update([
+            'remark' => $request->input('remark'),
+        ]);
+
+        //return ($attendance);
+        return redirect('violation');
+    }
+
+    //admin approval
+    public function adminapproval(Request $request)
+    {
+        $id = $request->id;
+        $attendance = Attendance::with('vehicle','staff')->where('id', $id)->update([
+            'approve' => $request->input('approve'),
+        ]);
+
+        //return ($attendance);
+        return redirect('admin/violation');
     }
 }

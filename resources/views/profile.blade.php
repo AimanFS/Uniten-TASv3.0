@@ -47,7 +47,7 @@
                     <th scope="row"><strong>Change profile picture</strong></th>
                     <td>
                         <div class="file-field">
-                            <a class="btn-floating purple-gradient mt-0 float-left">
+                            <a class="btn purple-gradient mt-0 float-left">
                                 <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
                                 <input id="picupload" type="file" name="avatar">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">

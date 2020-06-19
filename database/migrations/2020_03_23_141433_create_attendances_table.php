@@ -19,6 +19,8 @@ class CreateAttendancesTable extends Migration
             $table->datetime('timeout')->nullable();
             $table->string('locationin')->nullable();
             $table->string('locationout')->nullable();
+            $table->string('remark')->nullable();
+            $table->string('approve')->nullable();
             $table->timestamps();
         });
     }

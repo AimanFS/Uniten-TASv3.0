@@ -7,11 +7,7 @@
     <!--Card image-->
     <div
         class="view view-cascade gradient-card-header rgba-purple-strong narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
-
         <a href="" class="white-text mx-3">Attendance</a>
-
-        <button class="btn btn-secondary btn-rounded">Filter</button>
-
     </div>
     <!--/Card image-->
 
@@ -48,6 +44,10 @@
                             <a href="">Plate Number
                             </a>
                         </th>
+                        <th class="th-lg">
+                            <a href="">Duration
+                            </a>
+                        </th>
                     </tr>
                 </thead>
                 <!--Table head-->
@@ -57,11 +57,32 @@
                     @foreach($attendance as $attend)
                     <tr>
                         <td>{{ Auth::user()->username}}</td>
+                        @if($attend->timein == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->timein}}</td>
+                        @endif
+                        @if($attend->locationin == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->locationin}}</td>
+                        @endif
+                        @if($attend->timeout == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->timeout}}</td>
+                        @endif
+                        @if($attend->locationout == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->locationout}}</td>
+                        @endif
                         <td>{{$attend->vehicle->platenumber}}</td>
+                        <td>
+                            <?php $startTime = \Carbon\Carbon::parse($attend->timein);
+                            $endTime = \Carbon\Carbon::parse($attend->timeout); $totalDuration = $endTime->diff($startTime)->format('%H hours %I')." Minutes";?>
+                            {{$totalDuration}}
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

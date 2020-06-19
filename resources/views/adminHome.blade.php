@@ -60,21 +60,18 @@
                         <td>{{$stf->phoneno}}</td>
                         <td>{{$stf->department->name}}</td>
                         <td>
-                            <ul>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#centralModalSm">
+                                    data-target="#centralModalSm{{$stf->username}}">
                                     List
                                 </button>
 
                                 <!-- Central Modal Small -->
-                                <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="centralModalSm{{$stf->username}}" tabindex="-1" role="dialog"
                                     aria-labelledby="myModalLabel" aria-hidden="true">
 
                                     <!-- Change class .modal-sm to change the size of the modal -->
                                     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-
-
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h4 class="modal-title w-100" id="myModalLabel">Vehicle List</h4>
@@ -125,8 +122,6 @@
                                     </div>
                                 </div>
                                 <!-- Central Modal Small -->
-
-                            </ul>
                         </td>
                     </tr>
                     @endforeach
