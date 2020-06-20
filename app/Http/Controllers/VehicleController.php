@@ -26,17 +26,8 @@ class VehicleController extends Controller
     public function index()
     {
         $staff = Auth::user()->id;
-        //$dpt = Auth::user()->department_id;
-        //$department = User::with('department')->where('id', '=', $staff)->get();
-        
-        //dd($staff);
-
         $vehicles = Vehicle::where('staff_id', $staff)->where("state", 0)->with('staff')->orderBy('created_at','desc')->paginate(3);
-        
-        //dd($vehicles);
-
-        //return $department;
-        return view ('vehicle')->with('vehicle', $vehicles);//->with('department', $department);
+        return view ('vehicle')->with('vehicle', $vehicles);
     }
 
     /**
@@ -204,3 +195,4 @@ class VehicleController extends Controller
         return redirect('/profile');
     }
 }
+     

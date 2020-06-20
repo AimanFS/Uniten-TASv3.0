@@ -43,13 +43,11 @@
                         </select></div>
                 </div>
 
-
                 <!-- Vehicle model -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="model">Model</label></div>
                     <div class="col-md-6"><select id="model" class="form-control" name="model"></select></div>
                 </div>
-
 
                 <!-- Vehicle color -->
                 <div class="row">

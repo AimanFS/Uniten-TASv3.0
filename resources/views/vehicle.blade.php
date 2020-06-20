@@ -69,12 +69,12 @@
                         <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
-                                data-target="#centralModalSm">
+                                data-target="#centralModalSm{{$vehicles->id}}">
                                 options
                             </button>
 
                             <!-- Central Modal Small -->
-                            <div class="modal fade" id="centralModalSm" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="centralModalSm{{$vehicles->id}}" tabindex="-1" role="dialog"
                                 aria-labelledby="myModalLabel" aria-hidden="true">
 
                                 <!-- Change class .modal-sm to change the size of the modal -->
