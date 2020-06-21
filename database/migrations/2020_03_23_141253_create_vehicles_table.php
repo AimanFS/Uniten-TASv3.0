@@ -20,7 +20,7 @@ class CreateVehiclesTable extends Migration
             $table->string('color');
             $table->string('icnum');
             $table->string('license');
-            $table->string('platenumber');
+            $table->string('platenumber')->unique();
             $table->string('state')->nullable();
             $table->timestamps();
         });

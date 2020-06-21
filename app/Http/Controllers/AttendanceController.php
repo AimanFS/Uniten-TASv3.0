@@ -115,8 +115,10 @@ class AttendanceController extends Controller
     {
         $id = Auth::id();
         $staff = User::with('vehicle','department')->where('id', '!=', $id)->get();
-        $attendance = Attendance::with('vehicle','staff')->where(function ($query){
-            $query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->where('approve', null)->orderBy('created_at', 'DESC')->paginate(10);
+        $department = Auth::user()->department_id;
+        $attendance = Attendance::whereHas('staff',function ($query) use ($department){
+            $query->where('department_id', $department);
+        })->where(function ($query){$query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->where('approve', null)->with('vehicle','staff')->orderBy('created_at', 'DESC')->paginate(10);
 
         //return ($attendance);
         return view('adminviolation')->with('attendance', $attendance);
@@ -127,9 +129,11 @@ class AttendanceController extends Controller
     {
         $id = Auth::id();
         $staff = User::with('vehicle','department')->where('id', '!=', $id)->get();
-        $attendance = Attendance::with('vehicle','staff')->where(function ($query){
-            $query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->where(function($query){
-                $query->where('approve', '=', 'Yes')->orWhere('approve', '=', 'No');
+        $department = Auth::user()->department_id;
+        $attendance = Attendance::whereHas('staff',function ($query) use ($department){
+            $query->where('department_id', $department);
+        })->where(function ($query){$query->whereTime('timein', '>',Carbon::parse('08:01:00'))->orwhereTime('timeout', '<',Carbon::parse('17:15:00'));})->where(function($query){
+                $query->where('approve', '=', 'Approved')->orWhere('approve', '=', 'Rejected');
             })->orderBy('created_at', 'DESC')->paginate(10);
 
         //return ($attendance);

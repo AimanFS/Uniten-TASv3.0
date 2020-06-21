@@ -133,7 +133,7 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{ route('admin.home') }}"><i class="fas fa-list fa-lg"></i>Staff List</a>
+                        <li><a href="{{ route('admin.home') }}"><i class="fas fa-list"></i>   Staff List</a>
                         </li>
                         <li><a class="collapsible-header waves-effect arrow-r"><i
                             class="fas fa-exclamation fa-lg"></i>  Staff Violation<i

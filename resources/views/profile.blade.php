@@ -60,6 +60,8 @@
                 </tr>
             </tbody>
         </table>
+        <a class="btn white-text btn-rounded z-depth-0 my-4 waves-effect purple-gradient" style="float: right;" href="{{route('home')}}"
+            >Cancel</a>
         <button class="btn white-text btn-rounded z-depth-0 my-4 waves-effect purple-gradient" style="float: right;"
             type="submit">Update</button>
         </form>

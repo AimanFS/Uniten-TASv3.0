@@ -192,7 +192,7 @@ class VehicleController extends Controller
             $user->avatar = $filename;
             $user->save(); 
         }
-        return redirect('/profile');
+        Alert::success('Record Updated!', 'Your record has been updated.');
+        return redirect('/home')->with('success', 'Record updated!');
     }
 }
-     

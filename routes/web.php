@@ -35,12 +35,11 @@ Route::get('/violation', 'AttendanceController@violation');
 
 Route::get('/editvehicle/{id}', 'VehicleController@vehicleeditpage');
 
-Route::get('admin/home', 'HomeController@adminHome')->name('admin.home')->middleware('is_admin');
+Route::group(['middleware' => 'is_admin'], function(){
+    Route::get('/admin/home', 'HomeController@adminHome')->name('admin.home');
+    Route::get('/admin/violation', 'AttendanceController@violationtype')->name('admin.violation');
+    Route::get('/admin/violationapv', 'AttendanceController@violationapprove')->name('admin.violationapv');
+    Route::post('/adminapprove/{id}', 'AttendanceController@adminapproval')->name('adminapprove');
+    Route::post('/staffremark/{id}', 'AttendanceController@staffremark')->name('staffremark');
+});
 
-Route::get('admin/violation', 'AttendanceController@violationtype')->name('admin.violation');
-
-Route::get('admin/violationapv', 'AttendanceController@violationapprove')->name('admin.violationapv');
-
-Route::post('/adminapprove/{id}', 'AttendanceController@adminapproval')->name('adminapprove');
-
-Route::post('/staffremark/{id}', 'AttendanceController@staffremark')->name('staffremark');

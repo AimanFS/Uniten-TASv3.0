@@ -96,7 +96,7 @@
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#centralModalSm">
-                                Option
+                                Approval
                             </button>
 
                             <!-- Central Modal Small -->
@@ -118,23 +118,23 @@
                                             <form method="POST" action="/adminapprove/{{$attend->id}}">
                                                 @csrf
                                                 <div class="form-check form-check-inline">
-                                                    <input type="radio" class="form-check-input" id="approveyes"
-                                                        name="approve" value="Yes">
-                                                    <label class="form-check-label" for="approveyes">Yes</label>
+                                                    <input type="radio" class="form-check-input" id="approved"
+                                                        name="approve" value="Approved">
+                                                    <label class="form-check-label" for="approved">Approve</label>
                                                 </div>
 
                                                 <!-- Material inline 2 -->
                                                 <div class="form-check form-check-inline">
-                                                    <input type="radio" class="form-check-input" id="approveno"
-                                                        name="approve" value="No">
-                                                    <label class="form-check-label" for="approveno">No</label>
+                                                    <input type="radio" class="form-check-input" id="rejected"
+                                                        name="approve" value="Rejected">
+                                                    <label class="form-check-label" for="rejected">Reject</label>
                                                 </div>
 
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary btn-sm"
                                                 data-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary btn-sm">Approve</button>
+                                            <button type="submit" class="btn btn-primary btn-sm">Submit</button>
                                         </div>
                                         </form>
                                     </div>

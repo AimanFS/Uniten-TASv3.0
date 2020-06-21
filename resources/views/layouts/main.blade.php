@@ -133,12 +133,12 @@
                 <!-- Side navigation links -->
                 <li>
                     <ul class="collapsible collapsible-accordion">
-                        <li><a href="{{ route('home') }}"><i class="fas fa-home fa-lg"></i>    Home</a>
+                        <li><a href="{{ route('home') }}"><i class="fas fa-home"></i>    Home</a>
                         </li>
-                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check fa-lg"></i>   Attendance</a>
+                        <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check"></i>   Attendance</a>
                         </li>
                         <li><a class="collapsible-header waves-effect arrow-r"><i
-                                    class="fas fa-car fa-lg"></i>  Vehicles<i
+                                    class="fas fa-car"></i>  Vehicles<i
                                     class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>

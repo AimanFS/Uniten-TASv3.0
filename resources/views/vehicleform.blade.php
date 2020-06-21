@@ -60,7 +60,7 @@
                 
                 <!-- IC number -->
                 <div class="row">
-                    <div class="col-md-6 col-form-label"><label for="license">Identification number</label></div>
+                    <div class="col-md-6 col-form-label"><label for="license">Identity Card</label></div>
                     <div class="col-md-6 col-form-label input-group">
                         <div class="custom-file">
                             <input type="file" class=" custom-file-input" name="icnum">
