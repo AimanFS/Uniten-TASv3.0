@@ -29,65 +29,113 @@
                     <div class="col-md-6"><input type="text" id="username" class="form-control"
                             placeholder="{{ Auth::user()->username }}" disabled></div>
                 </div>
-                
+
                 <!-- Vehicle brand -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="brand">Brand</label></div>
                     <div class="col-md-6"><input type="text" id="username" class="form-control"
-                        placeholder="{{$vehicle->brand}}" disabled></div>
+                            placeholder="{{$vehicle->brand}}" disabled></div>
                 </div>
-
-
                 <!-- Vehicle model -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="model">Model</label></div>
                     <div class="col-md-6"><input type="text" id="username" class="form-control"
-                        placeholder="{{$vehicle->model}}" disabled></div>
+                            placeholder="{{$vehicle->model}}" disabled></div>
                 </div>
-
 
                 <!-- Vehicle color -->
                 <div class="row">
-                    <div class="col-md-6 col-form-label"><label for="color">Colour</label></div>
+                    <div class="col-md-6 col-form-label"><label for="color">{{ __('Color') }}</label></div>
                     <div class="col-md-6">
-                        <div class="colorPickSelector border rounded mb-0" data-initialcolor="{{$vehicle->color}}">choose</div>
-                        <input type="hidden" id="carcolour" value="" name="color">
+                        <div class="colorPickSelector border rounded mb-0" data-initialcolor="{{$vehicle->color}}">
+                            {{ __('Color') }}</div>
+                        <input type="hidden" id="carcolour" value="" name="color" class="@error('model')
+                        is-invalid @enderror" value="{{ old('color') }}" required autocomplete="color" autofocus>
                     </div>
                 </div>
-                
-                <!-- IC number -->
-                <div class="row">
-                    <div class="col-md-6 col-form-label"><label for="license">Identification number</label></div>
-                    <div class="col-md-6 col-form-label input-group">
-                        <input type="text" id="username" class="form-control"
-                        placeholder="{{$vehicle->icnum}}" disabled></div>
-                    </div>
 
+                <div class="row">
+                    <div class="col-md-6 col-form-label"><label for="ic">IC number</label></div>
+                    <div class="col-md-6"><input type="text" id="ic" class="form-control" name="ic"
+                            placeholder="{{$vehicle->ic}}" disabled></div>
+                </div>
+
+                <!-- IC image -->
+                <div class="row">
+                    <div class="col-md-6 col-form-label"><label for="icpic">Identity Card</label></div>
+                    <div class="col-md-6 col-form-label input-group">
+                        <input type="text" id="icpic" class="form-control" placeholder="{{$vehicle->icpic}}" disabled>
+                    </div>
+                </div>
 
                 <!-- License number -->
                 <div class="row">
-                    <div class="col-md-6 col-form-label"><label for="license">License number</label>
+                    <div class="col-md-6 col-form-label"><label for="license">{{ __('License number') }}</label></div>
+                    <div class="col-md-6"><input type="text" id="license"
+                            class="form-control @error('license') is-invalid @enderror" name="license"
+                            placeholder="{{$vehicle->license}}" value="{{ old('license') }}" required
+                            autocomplete="license" autofocus>@error('license')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>@enderror</div>
+                </div>
+
+                <!-- License image -->
+                <div class="row">
+                    <div class="col-md-6 col-form-label"><label for="licensepic">{{ __('License') }}</label>
                     </div>
                     <div class="col-md-6 col-form-label input-group">
-                        <input type="text" id="username" class="form-control"
-                        placeholder="{{$vehicle->license}}" disabled></div>
+                        <div class="custom-file">
+                            <input type="file" class=" custom-file-input @error('licensepic') is-invalid
+                                @enderror" name="licensepic" value="{{ old('licensepic') }}" required
+                                autocomplete="licensepic" autofocus>
+                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            <label class="custom-file-label" for="licensepic">Choose file</label>
+                            @error('licensepic')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>@enderror
+                        </div>
                     </div>
-
-
+                </div>
+                <!-- License expiry date -->
+                <div class="row">
+                    <div class="col-md-6 col-form-label"><label
+                            for="licenseexpiry">{{ __('License Expiry Date') }}</label>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="date" id="licenseexpiry" name="licenseexpiry" class="form-control @error('licenseexpiry') is-invalid
+                            @enderror" placeholder="{{$vehicle->licenseexpiry}}" value="{{ old('licenseexpiry') }}" required
+                            autocomplete="licenseexpiry" autofocus>
+                        @error('licenseexpiry')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>@enderror
+                    </div>
+                </div>
+                <!-- Address -->
+                <div class="row">
+                    <div class="col-md-6 col-form-label"><label for="address">{{ __('Residential Address') }}</label></div>
+                    <div class="col-md-6"><input type="text" id="address" class="form-control @error('address') is-invalid
+                        @enderror" name="address"
+                            placeholder="{{$vehicle->address}}" value="{{ old('address') }}" required autocomplete="address"
+                            autofocus>
+                    </div>
+                </div>
                 <!-- Plate number -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="platenumber">Plate number</label></div>
-                    <div class="col-md-6"><input type="text" id="username" class="form-control"
-                        placeholder="{{$vehicle->platenumber}}" disabled></div>
+                    <div class="col-md-6"><input type="text" id="platenumber" class="form-control"
+                            placeholder="{{$vehicle->platenumber}}" disabled></div>
                 </div>
-               
-                <!-- Sign in button -->
-                <button class="btn white-text btn-rounded btn-block z-depth-0 my-4 waves-effect rgba-purple-strong"
-                    type="submit">Update Vehicle</button>
+                <a class="btn white-text btn-rounded waves-effect rgba-purple-strong" href="{{route('Vehicle.index')}}"
+                    style="float: right;">Cancel</a>
+                <!-- Update button -->
+                <button class="btn white-text btn-rounded waves-effect rgba-purple-strong" type="submit"
+                    style="float: right;">Update Information</button>
 
             </form>
             <!-- Form -->
-
         </div>
     </div>
 </div>

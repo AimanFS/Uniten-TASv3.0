@@ -121,9 +121,7 @@
             {{$vehicle->links()}}
             <!--Table-->
         </div>
-
     </div>
-
 </div>
 <!-- Table with panel -->
 @endsection

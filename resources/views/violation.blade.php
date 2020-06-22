@@ -91,7 +91,7 @@
                                 @else
                                 <?php $time = date("H:i:s",strtotime($attend->timein))?>
                                 @if($time > '08:01:00')
-                                <li>Late</li>
+                                <li>Late check in!</li>
                                 @endif
                                 @endif
                                 @if ($attend->timeout == NULL)
@@ -129,8 +129,6 @@
 
                                 <!-- Change class .modal-sm to change the size of the modal -->
                                 <div class="modal-dialog modal-sm" role="document">
-
-
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h4 class="modal-title w-100" id="myModalLabel">Staff remark</h4>

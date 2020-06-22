@@ -18,8 +18,12 @@ class CreateVehiclesTable extends Migration
             $table->string('brand');
             $table->string('model');
             $table->string('color');
-            $table->string('icnum');
-            $table->string('license');
+            $table->string('ic')->unique();
+            $table->string('license')->unique();
+            $table->string('icpic');
+            $table->string('licensepic');
+            $table->date('licenseexpiry');
+            $table->string('address');
             $table->string('platenumber')->unique();
             $table->string('state')->nullable();
             $table->timestamps();

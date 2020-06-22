@@ -9,6 +9,7 @@ use App\Vehicle;
 use App\Department;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class VehicleController extends Controller
@@ -49,25 +50,41 @@ class VehicleController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            // 'brand' => ['required', 'string', 'max:255'],
+            // 'model' => ['required', 'string', 'max:25'],
+            // 'color' => ['required', 'string', 'max:255'],
+            'ic' => ['required', 'string','min:12', 'max:12'],
+            'license' => ['required', 'string', 'regex:/([0-9]){8}/'],
+            // 'icpic' => ['required'],
+            // 'licensepic' => ['required'],
+            // 'licenseexpiry' => ['required'],
+            // 'platenumber' => ['required'],
+        ],
+            [
+                'ic.min' => 'IC must have 12 numbers.',
+                'ic.max' => 'IC must have 12 numbers.',
+                'license.regex' => 'License must have 8 numbers.'
+        ]);
         //to retrieve ic file
-        if($request->hasFile('icnum')){
-            $icfile = $request->file('icnum')->getClientOriginalName();
+        if($request->hasFile('icpic')){
+            $icfile = $request->file('icpic')->getClientOriginalName();
             $filename = pathinfo($icfile, PATHINFO_FILENAME);
-            $extension = $request->file('icnum')->getClientOriginalExtension();
+            $extension = $request->file('icpic')->getClientOriginalExtension();
             $icupload = $filename.'.'.$extension;
             $path = 'identifications';
-            $ic = $request->file('icnum')->move($path, $icupload);
+            $icpic = $request->file('icpic')->move($path, $icupload);
             
         }
 
         //to retrieve license file
-        if($request->hasFile('license')){
-            $licensefile = $request->file('license')->getClientOriginalName();
+        if($request->hasFile('licensepic')){
+            $licensefile = $request->file('licensepic')->getClientOriginalName();
             $filename = pathinfo($licensefile, PATHINFO_FILENAME);
-            $extension = $request->file('license')->getClientOriginalExtension();
+            $extension = $request->file('licensepic')->getClientOriginalExtension();
             $licenseupload = $filename.'.'.$extension;
             $path = 'licenses';
-            $license = $request->file('license')->move($path,  $licenseupload);
+            $licensepic = $request->file('licensepic')->move($path,  $licenseupload);
         }
 
         $platenumber = str_replace(' ', '', $request->platenumber);
@@ -76,15 +93,21 @@ class VehicleController extends Controller
             "brand" => $request->brand,
             "model" => $request->model,
             "color" => $request->color,
-            "icnum" => $ic,
-            "license" => $license,
+            "ic" => $request->ic,
+            "license" => $request->license,
+            "icpic" => $icpic,
+            "licensepic" => $licensepic,
+            "licenseexpiry" => $request->licenseexpiry,
+            "address" => $request->address,
             "platenumber" =>  strtoupper($platenumber),
             "staff_id" => Auth::user()->id,
             "state" => 0,
             "created_at" =>  date('Y-m-d H:i:s'),
             "updated_at" =>  date('Y-m-d H:i:s'),
         ]);
-        return redirect()->action('VehicleController@index');
+
+        Alert::success('Vehicle registered!', 'The vehicle has been registered!');
+        return redirect()->action('VehicleController@index')->with('success', 'Vehicle registered.');
     }
 
     /**
@@ -118,11 +141,39 @@ class VehicleController extends Controller
      */
     public function update(Request $request,$id)
     {
+        $this->validate($request,[
+            // 'brand' => ['required', 'string', 'max:255'],
+            // 'model' => ['required', 'string', 'max:25'],
+            'color' => ['string', 'max:255'],
+            // 'ic' => ['required', 'string','min:12', 'max:12'],
+            'license' => ['string', 'regex:/([0-9]){8}/'],
+            // 'icpic' => ['required'],
+            //'licensepic' => ['required'],
+            // 'licenseexpiry' => ['required'],
+            // 'address' => ['required'],
+            // 'platenumber' => ['required'],
+
+        ]);
+        //to retrieve license file
+        if($request->hasFile('licensepic')){
+            $licensefile = $request->file('licensepic')->getClientOriginalName();
+            $filename = pathinfo($licensefile, PATHINFO_FILENAME);
+            $extension = $request->file('licensepic')->getClientOriginalExtension();
+            $licenseupload = $filename.'.'.$extension;
+            $path = 'licenses';
+            $licensepic = $request->file('licensepic')->move($path,  $licenseupload);
+        }
+
         $vehicle = Vehicle::where('id', $id)->first()->update([
             'color' => $request->input('color'),
+            'license' => $request->input('license'),
+            'licensepic' => $licensepic,
+            'licenseexpiry' => $request->input('licenseexpiry'),
+            'address' => $request->input('address'),
         ]);
         //dd($vehicle);
-        return redirect()->action('VehicleController@index');
+        Alert::success('Vehicle information updated!', 'Your new vehicle information has been saved.');
+        return redirect()->action('VehicleController@index')->with('success', 'Vehicle information updated!');
     }
 
     public function vehicleeditpage($id)
@@ -158,7 +209,9 @@ class VehicleController extends Controller
         $staff = Auth::user()->id;
         $vehicle = Vehicle::where('id', $id)->update(['state' => 1]);
 
-        return redirect()->back();
+        Alert::toast('Vehicle deleted!', 'The vehicle has been deleted.');
+
+        return redirect()->back()->with('toast', 'Vehicle deleted!');
     }
 
 
@@ -185,12 +238,19 @@ class VehicleController extends Controller
         ]);
 
         if($request->hasFile('avatar')){
-            $avatar = $request->file('avatar');
-            $filename = time() . '.' . $avatar->getClientOriginalExtension();
+            $avatar = $request->file('avatar'); 
+            $filename = $avatar->getClientOriginalName();
             Image::make($avatar)->resize(300,300)->save(public_path('/images/' . $filename));
             $user = Auth::user();
-            $user->avatar = $filename;
-            $user->save(); 
+            $queryavatar = User::where('avatar', '==', $avatar);
+            if($queryavatar != $filename){
+                $user->avatar = $filename;
+                $user->save(); 
+            }else{
+                Alert::error('Picture not changed!', 'New picture is currently the same.');
+            }
+            
+           
         }
         Alert::success('Record Updated!', 'Your record has been updated.');
         return redirect('/home')->with('success', 'Record updated!');

@@ -8,6 +8,8 @@ use App\Vehicle;
 use Auth;
 use App\Attendance;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class AttendanceController extends Controller
 {
@@ -147,9 +149,10 @@ class AttendanceController extends Controller
         $attendance = Attendance::with('vehicle','staff')->where('id', $id)->update([
             'remark' => $request->input('remark'),
         ]);
+        Alert::info('Remark added!', 'Your remark has been recorded.');
 
         //return ($attendance);
-        return redirect('violation');
+        return redirect('violation')->with('info', 'Remark added!');
     }
 
     //admin approval

@@ -9,7 +9,7 @@ class Vehicle extends Model
     //
 
     protected $fillable = [
-        'brand', 'model', 'color', 'icnum', 'license', 'platenumber', 'state',
+        'brand', 'model', 'color', 'ic', 'license', 'icpic', 'licensepic', 'licenseexpiry', 'address', 'platenumber', 'state',
     ];
 
     public function staff(){

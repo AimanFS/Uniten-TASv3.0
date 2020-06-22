@@ -79,7 +79,7 @@
                                     @else
                                     <?php $time = date("H:i:s",strtotime($attend->timein))?>
                                     @if($time > '08:01:00')
-                                    <li>Late</li>
+                                    <li>Late check in!</li>
                                     @endif
                                     @endif
                                     @if ($attend->timeout == NULL)
