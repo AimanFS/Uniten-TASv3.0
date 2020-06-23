@@ -98,7 +98,7 @@
                                 <li>No clock out!</li>
                                 @else
                                 <?php $time = date("H:i:s",strtotime($attend->timeout))?>
-                                @if($time < '17:15:00' ) <li>Early Leave</li>
+                                @if($time < '17:15:00') <li>Early Leave</li>
                                     @endif
 
                                     @endif

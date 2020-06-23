@@ -152,7 +152,7 @@ class AttendanceController extends Controller
         Alert::info('Remark added!', 'Your remark has been recorded.');
 
         //return ($attendance);
-        return redirect('violation')->with('info', 'Remark added!');
+        return redirect('violation')->with('info');
     }
 
     //admin approval
@@ -164,6 +164,7 @@ class AttendanceController extends Controller
         ]);
 
         //return ($attendance);
-        return redirect('admin/violation');
+        Alert::toast('A violation was given an approval!');
+        return redirect('admin/violation')->with('toast');
     }
 }

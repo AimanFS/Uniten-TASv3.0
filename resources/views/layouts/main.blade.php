@@ -126,7 +126,7 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light" style="height: 175px;">
-                        <a href="#"><img src="/images/taslogo.png" class="img-fluid flex-center"></a>
+                        <a href="{{ url('/') }}"><img src="/images/taslogo.png" class="img-fluid flex-center"></a>
                     </div>
                 </li>
                 <!--/. Logo -->
@@ -138,7 +138,7 @@
                         <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check"></i>   Attendance</a>
                         </li>
                         <li><a class="collapsible-header waves-effect arrow-r"><i
-                                    class="fas fa-car"></i>  Vehicles<i
+                                    class="fas fa-car"></i>  Vehicle(s)<i
                                     class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
@@ -149,7 +149,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="{{ url('violation')}}"><i class="fas fa-exclamation fa-lg"></i>    Violations</a>
+                        <li><a href="{{ url('violation')}}"><i class="fas fa-exclamation fa-lg"></i>    Violation(s)</a>
                         </li>
                     </ul>
                 </li>
@@ -194,9 +194,6 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="/profile">
                             Profile
-                        </a>
-                        <a class="dropdown-item" href="/admin/home">
-                            Admin
                         </a>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">

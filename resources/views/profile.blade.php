@@ -26,45 +26,73 @@
                 </tr>
                 <tr>
                     <th scope="row"><strong>Phone number</strong></th>
-                    <form enctype="multipart/form-data" action="/profile" method="POST">
-                        <td><input type="text" class="form-control" value="{{ Auth::user()->phoneno }}" name="phoneno">
-                        </td>
+                    <form action="/profilephone" method="POST">
+                        @csrf
+                        <td><input type="text" class="form-control @error('phoneno') is-invalid @enderror"
+                                value="{{ Auth::user()->phoneno }}" name="phoneno" autocomplete="phoneno">
+                            @error('phoneno')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            <button class="btn white-text btn-rounded waves-effect purple-gradient"
+                                style="float: right;" type="submit">Update phone number</button>
+                    </form>
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row"><strong>Department Unit</strong></th>
                     <td>
-
-                        <input type="hidden" value="{{ Auth::user()->department->name }}">Current department:
+                        <form action="/profiledpt" method="POST">
+                            @csrf
+                        <input type="hidden">Current department:
                         {{ Auth::user()->department->name }}</input>
-                        <select id="department_id" class="form-control" name="department_id">
+                        <select id="department_id" class="form-control @error('department_id') is-invalid @enderror"
+                            name="department_id" value="{{old('department_id')}}" autocomplete="department_id">
+                            <option value="" default>Select department</option>
                             @foreach($department as $dpt)
                             <option value="{{ $dpt->id }}">{{ $dpt->name }}</option>
                             @endforeach
                         </select>
+                        @error('department_id')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                        <button class="btn white-text btn-rounded waves-effect purple-gradient"
+                                style="float: right;" type="submit">Change department</button>
                     </td>
+                </form>
                 </tr>
                 <tr>
-                    <th scope="row"><strong>Change profile picture</strong></th>
+                    <th scope="row"><strong>Profile Picture</strong></th>
                     <td>
-                        <div class="file-field">
-                            <a class="btn purple-gradient mt-0 float-left">
-                                <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
-                                <input id="picupload" type="file" name="avatar">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            </a>
-                            <div class="file-path-wrapper">
-                                <input class="file-path validate" type="text" placeholder="Upload your file">
+                        <form enctype="multipart/form-data" action="/profile" method="POST">
+                            <div class="file-field">
+                                <a class="btn purple-gradient mt-0 float-left">
+                                    <i class="fas fa-cloud-upload-alt" aria-hidden="true"></i>
+                                    <input id="picupload" type="file" class="@error('avatar') is-invalid @enderror"
+                                        name="avatar" required autocomplete="avatar" autofocus>
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                </a>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text" placeholder="Upload your file" disabled>
+                                </div>
+                                @error('avatar')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                                <button class="btn white-text btn-rounded waves-effect purple-gradient"
+                                style="float: right;" type="submit">Update profile picture</button>
+                        </form>
                             </div>
-                        </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a class="btn white-text btn-rounded z-depth-0 my-4 waves-effect purple-gradient" style="float: right;" href="{{route('home')}}"
-            >Cancel</a>
-        <button class="btn white-text btn-rounded z-depth-0 my-4 waves-effect purple-gradient" style="float: right;"
-            type="submit">Update</button>
-        </form>
+        <a class="btn white-text btn-rounded z-depth-0 my-4 waves-effect purple-gradient" style="float: right;"
+            href="{{route('home')}}">Cancel</a>
     </div>
 
 </div>

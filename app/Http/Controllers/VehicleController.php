@@ -230,29 +230,72 @@ class VehicleController extends Controller
     }
 
     public function updateprofile(Request $request){
-        
-        $id = Auth::user()->id;
-        $department = User::where('id', $id)->first()->update([
-            'department_id' => $request->input('department_id'),
-            'phoneno' => $request->input('phoneno'),
-        ]);
 
+        $this->validate($request,[
+            'avatar' => ['required'],
+            
+        ]);
+        
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar'); 
             $filename = $avatar->getClientOriginalName();
-            Image::make($avatar)->resize(300,300)->save(public_path('/images/' . $filename));
-            $user = Auth::user();
-            $queryavatar = User::where('avatar', '==', $avatar);
-            if($queryavatar != $filename){
+            $extension = $request->file('avatar')->getClientOriginalExtension();
+            //return $extension;
+            if($extension == 'jpeg' || $extension == 'jpg' || $extension == 'gif' || $extension == 'png' || $extension == 'webp'){
+                Image::make($avatar)->resize(300,300)->save(public_path('/images/' . $filename));
+                $user = Auth::user();
                 $user->avatar = $filename;
-                $user->save(); 
+                $user->save();
+                $queryavatar = User::where('avatar', '==', $filename);
+                Alert::toast('Picture updated!', 'Your profile picture has been changed.');
+                    return redirect('/home')->with('success', 'Record updated!');
             }else{
-                Alert::error('Picture not changed!', 'New picture is currently the same.');
+                Alert::Info('Invalid Format', 'Please use only JPEG, JPG, PNG, GIF or WEBP format');
+                    return redirect('/profile')->with('info', 'hajdhsjakd');
             }
-            
-           
         }
-        Alert::success('Record Updated!', 'Your record has been updated.');
-        return redirect('/home')->with('success', 'Record updated!');
     }
+
+    public function updatephoneno(Request $request){
+        $this->validate($request,[
+            'phoneno' => ['unique:staffs','regex:/(01)[0-9]{9}/'],
+        ],
+            [
+                'phoneno.unique' => 'The phone number is already in use.',
+        ]);
+
+        $id = Auth::user()->id;
+        $phoneno = User::where('id', $id)->first()->update([
+            'phoneno' => $request->input('phoneno'),
+        ]);
+        Alert::toast('Phone number updated!', 'Your phone number has been updated.');
+        return redirect('/home')->with('success', 'Phone number updated!');
+    }
+
+    public function updatedepartment(Request $request){
+        $this->validate($request,[
+            'department_id' => ['required'],
+        ],
+        [
+            'department_id.required' => "Select a department",
+        ]);
+
+        $id = Auth::user()->id;
+        $dpt = Auth::user()->department_id;
+        
+        if($dpt == $request->get('department_id')){
+            //return "sama";
+            Alert::info('Same department!', 'You are already in the selected department!');
+            return redirect('/profile')->with('info', 'Currently in the department!');
+        }else{
+            //return "lain";
+            $department = User::where('id', $id)->first()->update([
+                'department_id' => $request->get('department_id'),
+            ]);
+            Alert::toast('Department changed!', 'You now belong in a different department!');
+            //return $department;
+            return redirect('/home')->with('toast', 'Department updated!');
+        }
+    }
+
 }

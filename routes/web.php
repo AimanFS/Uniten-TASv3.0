@@ -25,6 +25,10 @@ Route::get('/profile', 'VehicleController@profile');
 
 Route::post('/profile', 'VehicleController@updateprofile');
 
+Route::post('/profilephone', 'VehicleController@updatephoneno');
+
+Route::post('/profiledpt', 'VehicleController@updatedepartment');
+
 Route::resource('Vehicle', 'VehicleController');
 
 Route::resource('Attendance', 'AttendanceController');

@@ -442,7 +442,7 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light" style="height: 175px;">
-                        <a href="#"><img src="/images/taslogo.png" class="img-fluid flex-center"></a>
+                        <a href="{{ url('/') }}"><img src="/images/taslogo.png" class="img-fluid flex-center"></a>
                     </div>
                 </li>
                 <!--/. Logo -->
@@ -453,7 +453,7 @@
                         </li>
                         <li><a href="{{ url('Attendance')}}"><i class="fas fa-user-check"></i> Attendance</a>
                         </li>
-                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-car"></i> Vehicles<i
+                        <li><a class="collapsible-header waves-effect arrow-r"><i class="fas fa-car"></i> Vehicle(s)<i
                                     class="fas fa-angle-down rotate-icon"></i></a>
                             <div class="collapsible-body">
                                 <ul>
@@ -464,7 +464,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li><a href="{{ url('violation')}}"><i class="fas fa-exclamation iconcustom"></i>Violations</a>
+                        <li><a href="{{ url('violation')}}"><i class="fas fa-exclamation iconcustom"></i>Violation(s)</a>
                         </li>
                     </ul>
                 </li>

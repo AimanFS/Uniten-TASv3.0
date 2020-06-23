@@ -126,7 +126,7 @@
                 <!-- Logo -->
                 <li>
                     <div class="logo-wrapper waves-light" style="height: 175px;">
-                        <a href="#"><img src="/images/taslogo.png" class="img-fluid flex-center"></a>
+                        <a href="{{ url('/') }}"><img src="/images/taslogo.png" class="img-fluid flex-center"></a>
                     </div>
                 </li>
                 <!--/. Logo -->
