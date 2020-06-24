@@ -64,74 +64,74 @@
                         <td>{{$stf->phoneno}}</td>
                         <td>{{$stf->department->name}}</td>
                         <td>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal"
-                                    data-target="#centralModalSm{{$stf->username}}">
-                                    List
-                                </button>
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-primary" data-toggle="modal"
+                                data-target="#centralModalSm{{$stf->username}}">
+                                <i class="fas fa-clipboard-list"></i>
+                            </button>
 
-                                <!-- Central Modal Small -->
-                                <div class="modal fade" id="centralModalSm{{$stf->username}}" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel" aria-hidden="true">
+                            <!-- Central Modal Small -->
+                            <div class="modal fade" id="centralModalSm{{$stf->username}}" tabindex="-1" role="dialog"
+                                aria-labelledby="myModalLabel" aria-hidden="true">
 
-                                    <!-- Change class .modal-sm to change the size of the modal -->
-                                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title w-100" id="myModalLabel">Vehicle List</h4>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="container-fluid">
-                                                    <table class="table">
-                                                        <!--Table head-->
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="th-lg">
-                                                                    <a href="">Brand
-                                                                    </a>
-                                                                </th>
-                                                                <th class="th-lg">
-                                                                    <a href="">Model
-                                                                    </a>
-                                                                </th>
-                                                                <th class="th-lg">
-                                                                    <a href="">Colour
-                                                                    </a>
-                                                                </th>
-                                                                <th class="th-lg">
-                                                                    <a href="">Plate Number
-                                                                    </a>
-                                                                </th>
-                                                            </tr>
-                                                        </thead>
-                                                        <!--Table body-->
-                                                        <tbody>
-                                                            @foreach($stf->vehicle->sortByDesc('created_at')->where("state", 0) as $vehicles)
-                                                            <tr>
-                                                                <td>{{$vehicles->brand}}</td>
-                                                                <td>{{$vehicles->model}}</td>
-                                                                <td>{{$vehicles->color}}</td>
-                                                                <td>{{$vehicles->platenumber}}</td>
-                                                            </tr>
-                                                            @endforeach
-                                                        </tbody>
-                                                    </table>
-                                                </div>
+                                <!-- Change class .modal-sm to change the size of the modal -->
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title w-100" id="myModalLabel">Vehicle List</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="container-fluid">
+                                                <table class="table">
+                                                    <!--Table head-->
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="th-lg">
+                                                                <a href="">Brand
+                                                                </a>
+                                                            </th>
+                                                            <th class="th-lg">
+                                                                <a href="">Model
+                                                                </a>
+                                                            </th>
+                                                            <th class="th-lg">
+                                                                <a href="">Colour
+                                                                </a>
+                                                            </th>
+                                                            <th class="th-lg">
+                                                                <a href="">Plate Number
+                                                                </a>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <!--Table body-->
+                                                    <tbody>
+                                                        @foreach($stf->vehicle->sortByDesc('created_at')->where("state",
+                                                        0) as $vehicles)
+                                                        <tr>
+                                                            <td>{{$vehicles->brand}}</td>
+                                                            <td>{{$vehicles->model}}</td>
+                                                            <td>{{$vehicles->color}}</td>
+                                                            <td>{{$vehicles->platenumber}}</td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Central Modal Small -->
+                            </div>
+                            <!-- Central Modal Small -->
                         </td>
                         <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#centralModal{{$stf->username}}">
-                                List
+                                <i class="fas fa-clipboard-list"></i>
                             </button>
 
                             <!-- Central Modal Small -->
@@ -143,8 +143,7 @@
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <h4 class="modal-title w-100" id="myModalLabel">Attendance Logs</h4>
-                                            <button type="button" class="close" data-dismiss="modal"
-                                                aria-label="Close">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
                                         </div>
@@ -189,15 +188,35 @@
                                                         @foreach($stf->attendance->sortByDesc('created_at') as $attend)
                                                         <tr>
                                                             <td>{{$stf->username}}</td>
+                                                            @if($attend->timein == NULL)
+                                                            <td>N/A</td>
+                                                            @else
                                                             <td>{{$attend->timein}}</td>
+                                                            @endif
+                                                            @if($attend->locationin == NULL)
+                                                            <td>N/A</td>
+                                                            @else
                                                             <td>{{$attend->locationin}}</td>
+                                                            @endif
+                                                            @if($attend->timeout == NULL)
+                                                            <td>N/A</td>
+                                                            @else
                                                             <td>{{$attend->timeout}}</td>
+                                                            @endif
+                                                            @if($attend->locationout == NULL)
+                                                            <td>N/A</td>
+                                                            @else
                                                             <td>{{$attend->locationout}}</td>
+                                                            @endif
                                                             <td>{{$attend->vehicle->platenumber}}</td>
                                                             <td>
+                                                                @if($attend->timein == NULL || $attend->timeout == NULL)
+                                                                {{'Cannot calculate due to incomplete log.'}}
+                                                                @else
                                                                 <?php $startTime = \Carbon\Carbon::parse($attend->timein);
                                                                 $endTime = \Carbon\Carbon::parse($attend->timeout); $totalDuration = $endTime->diff($startTime)->format('%H hours %I')." Minutes";?>
                                                                 {{$totalDuration}}
+                                                                @endif
                                                             </td>
                                                         </tr>
                                                         @endforeach
@@ -209,7 +228,7 @@
                                 </div>
                             </div>
                             <!-- Central Modal Small -->
-                    </td>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

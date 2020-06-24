@@ -23,6 +23,10 @@
                 <thead>
                     <tr>
                         <th class="th-lg">
+                            <a>Staff Name
+                            </a>
+                        </th>
+                        <th class="th-lg">
                             <a>Staff No.
                             </a>
                         </th>
@@ -54,6 +58,10 @@
                             <a href="">Remark
                             </a>
                         </th>
+                        <th class="th-lg">
+                            <a href="">Approval
+                            </a>
+                        </th>
                     </tr>
                 </thead>
                 <!--Table head-->
@@ -62,11 +70,28 @@
                 <tbody>
                     @foreach($attendance as $attend)
                     <tr>
+                        <td>{{$attend->staff->name}}</td>
                         <td>{{$attend->staff->username}}</td>
+                        @if($attend->timein == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->timein}}</td>
+                        @endif
+                        @if($attend->locationin == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->locationin}}</td>
+                        @endif
+                        @if($attend->timeout == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->timeout}}</td>
+                        @endif
+                        @if($attend->locationout == NULL)
+                        <td>N/A</td>
+                        @else
                         <td>{{$attend->locationout}}</td>
+                        @endif
                         <td>{{$attend->vehicle->platenumber}}</td>
                         <td>
                             <ul>
@@ -84,19 +109,19 @@
                                 <?php $time = date("H:i:s",strtotime($attend->timeout))?>
                                 @if($time < '17:15:00' ) <li>Early Leave</li>
                                     @endif
-                                @endif
+                                    @endif
                             </ul>
                         </td>
                         <td style="width:300px; word-wrap:break-word;">@if($attend->remark == NULL)
                             {{'No remark available!'}}
                             @else
                             {{$attend->remark}}</td>
-                            @endif
+                        @endif
                         <td>
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal"
                                 data-target="#centralModalSm">
-                                Approval
+                                <i class="fas fa-check-circle"></i>
                             </button>
 
                             <!-- Central Modal Small -->

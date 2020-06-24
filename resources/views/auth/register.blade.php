@@ -99,7 +99,8 @@
                             <label for="department_id"
                                 class="col-md-4 col-form-label text-md-right">{{ __('Department') }}</label>
                             <div class="col-md-6">
-                                <select id="department_id" class="form-control" name="department_id">
+                                <select id="department_id" class="form-control" name="department_id" required>
+                                    <option value="" default>Select department</option>
                                     @foreach($department as $dpt)
                                     <option value="{{ $dpt->id }}">{{ $dpt->name }}</option>
                                     @endforeach

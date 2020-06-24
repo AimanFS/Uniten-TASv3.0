@@ -63,9 +63,9 @@ class LoginController extends Controller
                 return redirect()->route('home');
             }
         }else{
-            Alert::error('Wrong information!', 'The staffno/password is wrong!');
+            Alert::error('Wrong credentials!', 'The credentials entered is invalid.');
             return redirect()->route('login')
-                ->with('error','Email-Address And Password Are Wrong.');
+                ->with('error');
         }
           
     }

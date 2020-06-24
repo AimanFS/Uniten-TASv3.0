@@ -79,9 +79,13 @@
                         @endif
                         <td>{{$attend->vehicle->platenumber}}</td>
                         <td>
+                            @if($attend->timein == NULL || $attend->timeout == NULL)
+                            {{'Cannot calculate due to incomplete log.'}}
+                            @else
                             <?php $startTime = \Carbon\Carbon::parse($attend->timein);
                             $endTime = \Carbon\Carbon::parse($attend->timeout); $totalDuration = $endTime->diff($startTime)->format('%H hours %I')." Minutes";?>
                             {{$totalDuration}}
+                            @endif
                         </td>
                     </tr>
                     @endforeach

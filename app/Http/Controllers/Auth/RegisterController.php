@@ -57,6 +57,11 @@ class RegisterController extends Controller
             'password' => ['required', 'string', 'min:6', 'confirmed'],
             'phoneno' => ['required', 'regex:/(01)[0-9]{9}/'],
             'department_id' => ['required'],
+        ],
+        [
+            'username.unique' => 'The Staff No already exists.',
+            'phoneno.regex' => 'Phone number format is 01xxxxxxxxx.'
+        
         ]);
     }
 
