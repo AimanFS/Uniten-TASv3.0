@@ -72,7 +72,12 @@
         @if (Route::has('login'))
         <div class="top-right links">
             @auth
+            @if(Auth::user()->is_admin == 0)
             <a href="{{ url('/home') }}">Home</a>
+            @endif
+            @if(Auth::user()->is_admin == 1)
+            <a href="{{ url('/admin/home') }}">Admin Home</a>
+            @endif
             <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                 {{ __('Logout') }}
