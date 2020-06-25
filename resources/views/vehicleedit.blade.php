@@ -73,7 +73,7 @@
                     <div class="col-md-6 col-form-label"><label for="license">{{ __('License number') }}</label></div>
                     <div class="col-md-6"><input type="text" id="license"
                             class="form-control @error('license') is-invalid @enderror" name="license"
-                            placeholder="{{$vehicle->license}}" value="{{ old('license') }}" required
+                            placeholder="{{$vehicle->license}}" maxlength="8" value="{{ old('license') }}" required
                             autocomplete="license" autofocus>@error('license')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>

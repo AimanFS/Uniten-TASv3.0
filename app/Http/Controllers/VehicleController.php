@@ -54,16 +54,14 @@ class VehicleController extends Controller
             // 'brand' => ['required', 'string', 'max:255'],
             // 'model' => ['required', 'string', 'max:25'],
             // 'color' => ['required', 'string', 'max:255'],
-            'ic' => ['required', 'string','min:12', 'max:12'],
-            'license' => ['required', 'string', 'regex:/([0-9]){8}/'],
+            'ic' => ['required', 'string','regex:/^\d{6}-\d{2}-\d{4}$/'],
+            'license' => ['required', 'string'],
             // 'icpic' => ['required'],
             // 'licensepic' => ['required'],
             // 'licenseexpiry' => ['required'],
-            // 'platenumber' => ['required'],
+            'platenumber' => ['required', 'unique:vehicles'],
         ],
             [
-                'ic.min' => 'IC must have 12 numbers.',
-                'ic.max' => 'IC must have 12 numbers.',
                 'license.regex' => 'License must have 8 numbers.'
         ]);
         //to retrieve ic file
@@ -258,7 +256,7 @@ class VehicleController extends Controller
 
     public function updatephoneno(Request $request){
         $this->validate($request,[
-            'phoneno' => ['unique:staffs','regex:/(01)[0-9]{9}/'],
+            'phoneno' => ['unique:staffs','regex:/(01)[0-9]{7,8}/', 'min:10'],
         ],
             [
                 'phoneno.unique' => 'The phone number is already in use.',

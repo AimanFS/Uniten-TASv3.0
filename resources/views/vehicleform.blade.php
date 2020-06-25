@@ -155,7 +155,7 @@
                     <div class="col-md-6 col-form-label"><label for="license">{{ __('License number') }}</label></div>
                     <div class="col-md-6"><input type="text" id="license"
                             class="form-control @error('license') is-invalid @enderror" name="license"
-                            value="{{ old('license') }}" required autocomplete="license" autofocus>@error('license')
+                            value="{{ old('license') }}" maxlength="8" required autocomplete="license" autofocus>@error('license')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>@enderror</div>
@@ -210,7 +210,7 @@
                 <!-- Plate number -->
                 <div class="row">
                     <div class="col-md-6 col-form-label"><label for="platenumber">{{ __('Plate number') }}</label></div>
-                    <div class="col-md-6"><input type="text" id="platenumber" name="platenumber" class="form-control @error('address') is-invalid
+                    <div class="col-md-6"><input type="text" id="platenumber" name="platenumber" class="form-control @error('platenumber') is-invalid
                         @enderror" value="{{ old('platenumber') }}" required autocomplete="address" autofocus>
                         @error('platenumber')
                         <span class="invalid-feedback" role="alert">

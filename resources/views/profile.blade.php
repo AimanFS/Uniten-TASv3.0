@@ -29,7 +29,7 @@
                     <form action="/profilephone" method="POST">
                         @csrf
                         <td><input type="text" class="form-control @error('phoneno') is-invalid @enderror"
-                                value="{{ Auth::user()->phoneno }}" name="phoneno" autocomplete="phoneno">
+                                value="{{ Auth::user()->phoneno }}" name="phoneno" maxlength="11" autocomplete="phoneno">
                             @error('phoneno')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
