@@ -18,8 +18,6 @@ class DptSeeder extends Seeder
         $faker = Faker::create();
 
         DB::table('staffs')->insert([
-            ["name" => "CCI Admin", "username" => "admincci", "email" => "cci@admin.com", "password" => Hash::make('14253678'), "phoneno" => "0123456789", "is_admin" => "1", "avatar" => "admindefault.png", "created_at" => now(), "updated_at" => now(), "department_id" => "1"],
-            ["name" => "COE Admin", "username" => "admincoe", "email" => "coe@admin.com", "password" => Hash::make('41526387'), "phoneno" => "0987654321", "is_admin" => "1", "avatar" => "admindefault.png", "created_at" => now(), "updated_at" => now(), "department_id" => "2"],
             ["name" => "Aiman Faruqy", "username" => "9003281", "email" => "aiman@test.com", "password" => Hash::make('12345678'), "phoneno" => "01161033995", "is_admin" => "0", "avatar" => "staffdefault.png", "created_at" => now(), "updated_at" => now(), "department_id" => "1"],
             ["name" => "Muhammad Syamirul", "username" => "9009865", "email" => "syamirul@test.com", "password" => Hash::make('87654321'), "phoneno" => "01987654321", "is_admin" => "0", "avatar" => "staffdefault.png", "created_at" => now(), "updated_at" => now(), "department_id" => "2"],
         ]);
